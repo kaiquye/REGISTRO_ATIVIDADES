@@ -4,6 +4,14 @@
 - Cadastro de novos projetos.
 
 
+#Models DB
++Aloca 
++Adm
++Projeto
++Gerente
++usuario comum .Rel.Alo
+
+
 
 # Implementação
 ### Centro de custo
