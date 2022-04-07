@@ -5,13 +5,33 @@
 
 
 #Models DB
-+Aloca 
-+Adm
-+Projeto
-+Gerente
-+usuario comum .Rel.Alo
-
-
++ Aloca 
+  + + id
+  + + assunto
+  + + nome_usuario
+  + + email_usuario
+  + + createAt
+  + + finallyAt
+  + + projeto.rel.centrodcusto
++ Adm
+  + + nome
+  + + setor
+  + + cargo
+  + + email
+  + + phone
++ Projeto
+  + + nome
+  + + gerente.rel.ge
+  + + setor
+  + + createAt
+  + + finallyAt
+  + + assunto
++ Gerente
+  + + nome
+  + + email
+  + + phone
+  + + setor
+  + + cargo
 
 # Implementação
 ### Centro de custo
