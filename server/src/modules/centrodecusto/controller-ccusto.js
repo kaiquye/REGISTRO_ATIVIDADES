@@ -1,4 +1,4 @@
-const { CriarNovoRegistro, BuscarRegistroToken, BuscarTodos, AtualizarRegistro } = require('./servicos-registro')
+const { CriarNovoRegistro, BuscarRegistroToken, BuscarTodos, AtualizarRegistro } = require('./servicos-ccusto')
 
 class ControllerCentroDeCusto {
    async Criar(req, res, next) {

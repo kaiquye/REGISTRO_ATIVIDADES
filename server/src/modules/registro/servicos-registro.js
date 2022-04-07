@@ -1,3 +1,5 @@
+const {Deletar, Criar, Atualizar, BuscarTodos, BuscarPorToken } = require('./model-registro')
+
 class ServicosRegistro {
     async Criar(assunto, funcionario, email, projeto, termino) {
      try {
@@ -15,9 +17,9 @@ class ServicosRegistro {
          // token_registro = id bycripy
          // verificar se exite
          // verificar se o funcionario esta ativo
-         return await BuscarUmRegistro(token_registro);
+         return await BuscarPorToken(token_registro);
      } catch (error) {
-      throw new Error('Aconteceu algo inesperado.' + error.message)
+      throw new Error('Aconteceu algo inesperado. ' + error.message)
      } 
    }
  
@@ -33,7 +35,7 @@ class ServicosRegistro {
    async UpdateRegistro(token_registro, assunto, funcionario, email, projeto, inicio,termino){
        try {
            //verificar se o registro exite.
-           await AtualizarRegistro(token_registro, assunto, funcionario, email, projeto, inicio,termino)
+           await Atualizar(token_registro, assunto, funcionario, email, projeto, inicio,termino)
        } catch (error) {
           throw new Error('Aconteceu algo inesperado.' + error.message)
        }

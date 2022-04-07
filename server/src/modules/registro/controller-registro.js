@@ -49,3 +49,9 @@ class RegistroController {
       }
   }
 }
+module.exports = {
+    Criar : new RegistroController().Criar,
+    Buscar : new RegistroController().BuscarRegistro,
+    BuscarTodos : new RegistroController().BuscarTodosRegistro,
+    Update : new RegistroController().UpdateRegistro
+}
