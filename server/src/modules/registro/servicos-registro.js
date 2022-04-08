@@ -7,8 +7,11 @@ class ServicosRegistro {
     try {
       const DateStart = Util.DataNovoRegistro(inicio);
       const DateEnd = Util.DataNovoRegistro(termino);
-      CalcularHorasTrabalhadas.CalcularHoras(DateStart, DateEnd);
-      await Model.Criar(assunto, funcionario, email, projeto, DateStart, DateEnd);
+      const Decorrido = CalcularHorasTrabalhadas.CalcularHoras(DateStart, DateEnd);
+      const resutlado = Decorrido.toString();
+      const teste = resutlado.replace(/^0+/, '');
+      const teste2 = teste.replace(/^.+/, 'v');
+      await Model.Criar(assunto, funcionario, email, projeto, DateStart, DateEnd, Decorrido);
     } catch (error) {
       const messageError = error.message;
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
