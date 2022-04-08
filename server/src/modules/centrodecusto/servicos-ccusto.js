@@ -1,52 +1,39 @@
+const Model = require('./models-ccusto');
+
 class ServicosCcusto {
-  async CriarCcusto(setor, gastos, livres, empresa) {
+  static async Criar(setor, gastos, livres, empresa) {
     try {
-      // gerar uma chave (tokne) para cada registro
-      // codigicar o token que não se repete
-      // verificar se ja exite
-      await Criar(setor, gastos, livres, empresa);
+      await Model.Criar(setor, gastos, livres, empresa);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      console.log('______', error);
+      throw new Error('Aconteceu algo inesperado.');
     }
   }
 
-  async BuscarCcusto(token_ccusto) {
+  static async Buscar(Id) {
     try {
-      // token_registro = id bycripy
-      // verificar se exite
-      // verificar se o funcionario esta ativo
-      return await Buscar(token_ccusto);
+      return await Model.Buscar(Id);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      throw new Error('Aconteceu algo inesperado.');
     }
   }
 
-  async BuscarTodosCcusto() {
+  static async BuscarTodos() {
     try {
-      let cccusto = await BuscarTodos();
-      return registros;
+      const Ccusto = await Model.BuscarTodos();
+      return Ccusto;
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      throw new Error('Aconteceu algo inesperado.');
     }
   }
 
-  async UpdateCcusto(
-    etor, gastos, livres, empresa
-  ) {
+  static async Atualizar(setor, gastos, livres, empresa) {
     try {
-      //verificar se o registro exite.
-      await Update(
-        etor, gastos, livres, empresa
-      );
+      await Model.Atualizar(setor, gastos, livres, empresa);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      throw new Error('Aconteceu algo inesperado.');
     }
   }
 }
 
-module.exports = {
-  BuscarCcusto: new ServicosCcusto().BuscarCcusto,
-  CriarCcusto: new ServicosCcusto().CriarCcusto,
-  BuscarTodosCcusto: new ServicosCcusto().BuscarTodosCcusto,
-  UpdateCcusto: new ServicosCcusto().UpdateCcusto,
-};
+module.exports = ServicosCcusto;

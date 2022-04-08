@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const { Criar } = require('./controller-ccusto')
+const { Router } = require('express');
+const Controller = require('./controller-ccusto');
 
 class RouteCentrodeCusto {
   App;
@@ -10,8 +10,8 @@ class RouteCentrodeCusto {
   }
 
   RoutesProtegidas() {
-    this.App.get("/", (req, res, next) => console.log("CentrodeCustoRoute get"));
-    this.App.post("/", (req, res, next) => console.log("CentrodeCustoRoute post"));
+    this.App.get('/', Controller.BuscarTodos);
+    this.App.post('/', Controller.Criar);
   }
 }
 module.exports = new RouteCentrodeCusto().App;
