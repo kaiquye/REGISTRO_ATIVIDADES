@@ -1,7 +1,12 @@
-# GESTÂO REGISTRO
+# GESTÃO REGISTRO
 - Responsavel pelo registro das atividades dos funcionarios.
 - Listagem de usuarios ativos e inativos.
 - Cadastro de novos projetos.
+
+## CENTRO DE CUSTO 
++ calcular as horas trabalhadas,
++ fazer a porcentagem desse valor, NOVOS REGISTROS DEVERÃO ADICIONAR O TEMPO TRABALHADO NO CENTRO DE CUSTO. 
++ somar o total das horas trabalhadas por centro de custo por mes ( new Date(), pegar o mês e fazer o calculo)
 
 
 #Models DB
