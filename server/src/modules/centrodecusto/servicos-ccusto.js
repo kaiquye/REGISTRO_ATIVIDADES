@@ -1,52 +1,52 @@
+const Model = require('./models-ccusto');
+
 class ServicosCcusto {
-  async CriarCcusto(setor, gastos, livres, empresa) {
+  static async Criar(setor, gastos, livres, empresa) {
     try {
-      // gerar uma chave (tokne) para cada registro
-      // codigicar o token que não se repete
-      // verificar se ja exite
-      await Criar(setor, gastos, livres, empresa);
+      await Model.Criar(setor.toUpperCase(), gastos, livres, empresa);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      console.log(error);
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
 
-  async BuscarCcusto(token_ccusto) {
+  static async Buscar(Id) {
     try {
-      // token_registro = id bycripy
-      // verificar se exite
-      // verificar se o funcionario esta ativo
-      return await Buscar(token_ccusto);
+      return await Model.Buscar(Id);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
 
-  async BuscarTodosCcusto() {
+  static async BuscarTodos(condicao) {
     try {
-      let cccusto = await BuscarTodos();
-      return registros;
+      const Ccustos = await Model.BuscarTodos(condicao);
+      return Ccustos;
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
 
-  async UpdateCcusto(
-    etor, gastos, livres, empresa
-  ) {
+  static async Atualizar(setor, gastos, livres, empresa) {
     try {
-      //verificar se o registro exite.
-      await Update(
-        etor, gastos, livres, empresa
-      );
+      await Model.Atualizar(setor, gastos, livres, empresa);
     } catch (error) {
-      throw new Error("Aconteceu algo inesperado." + error.message);
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
+
+  static async BuscarCentroDeCustoEProjetos(Id) {
+    try {
+      return await Model.BuscarCentroDeCustoEProjetos(Id);
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
 }
 
-module.exports = {
-  BuscarCcusto: new ServicosCcusto().BuscarCcusto,
-  CriarCcusto: new ServicosCcusto().CriarCcusto,
-  BuscarTodosCcusto: new ServicosCcusto().BuscarTodosCcusto,
-  UpdateCcusto: new ServicosCcusto().UpdateCcusto,
-};
+module.exports = ServicosCcusto;

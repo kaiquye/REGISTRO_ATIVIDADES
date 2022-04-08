@@ -1,0 +1,15 @@
+Todas as rotas deverão ser privadas.
+- Logar com reactAdal,
+- Contas de administradores ( Criar novos centros de custos, Controlar registros );
+Validar ao criar novo usuario,
+- Todos usuarios deverão esta cadastrado no banco de dados
+Data 
+Envio a data, converto para mills
+-(Date.parse('02/13/2009 23:31:30'))
+- Crio uma nova data com mlss
+-(new Date(1234575090000))
+- Pege as info para mostrar na tela
+(new Date(1234575090000).getDate())
+## Roles 
+- ADM Roles 
+- quanod o usuario logar pegar a roles do token;

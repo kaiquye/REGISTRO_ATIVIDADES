@@ -1,4 +1,3 @@
-const cors  = require('cors')
+const cors = require('cors');
 
-
-module.exports = { cors }
+module.exports = { cors };

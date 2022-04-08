@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const Controller = require('./controller-registro');
+const Controller = require('./controller-gerente');
 
 class RouteRegistro {
   App;
@@ -11,9 +11,6 @@ class RouteRegistro {
 
   RoutesProtegidas() {
     this.App.post('/', Controller.Criar);
-    this.App.get('/:token_registro', Controller.Buscar);
-    this.App.get('/', Controller.BuscarTodos);
-    this.App.patch('/:token_registro', Controller.Atualizar);
   }
 }
 module.exports = new RouteRegistro().App;

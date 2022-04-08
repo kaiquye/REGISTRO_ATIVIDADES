@@ -1,8 +1,4 @@
-const { cors } = require('./cors')
-const { jwt } = require('./jwt')
+const { cors } = require('./cors');
+const { jwt } = require('./jwt');
 
-
-module.exports = {
-    cors,
-    jwt
-}
+module.exports = { cors, jwt };

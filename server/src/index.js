@@ -1,8 +1,11 @@
-const express = require("express");
-const { cors } = require("./midldlewares");
+const express = require('express');
+const { cors } = require('./midldlewares');
 
-const registroRoute = require("./modules/registro/routes-registro");
-const CentrodeCustoRoute = require('./modules/centrodecusto/routes-ccusto')
+const registroRoute = require('./modules/registro/routes-registro');
+const centrodeCustoRoute = require('./modules/centrodecusto/routes-ccusto');
+const gerenteRoute = require('./modules/gerente/routes-gerente');
+const projetoRoute = require('./modules/projeto/router-projeto');
+
 class Server {
   App;
 
@@ -18,9 +21,10 @@ class Server {
   }
 
   Routes() {
-    //todas as rotas sao protegidas.
-    this.App.use("/api/registro", [registroRoute]);
-    this.App.use('/api/centrodecusto', [CentrodeCustoRoute])
+    this.App.use('/api/registro', [registroRoute]);
+    this.App.use('/api/centrodecusto', [centrodeCustoRoute]);
+    this.App.use('/api/gerente', [gerenteRoute]);
+    this.App.use('/api/projeto', [projetoRoute]);
   }
 }
 module.exports = Server;
