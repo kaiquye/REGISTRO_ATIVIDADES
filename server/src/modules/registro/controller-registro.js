@@ -6,10 +6,11 @@ class RegistroController {
       const {
         assunto, funcionario, email, projeto, inicio, termino,
       } = req.body;
-      await Service.Criar(assunto, funcionario, email, projeto, inicio || new Date(), termino);
+      const Instace = await Service
+        .Criar(assunto, funcionario, email, projeto, inicio || new Date(), termino);
+      if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(201).json({ message: ' Registro criado com sucesso !' });
     } catch (error) {
-      next(error);
       return res.status(500).json({ message: error.message });
     }
   }
@@ -21,7 +22,6 @@ class RegistroController {
       if (Registro) return res.status(200).json({ data: Registro });
       return res.status(400).json({ message: 'registro não existe !' });
     } catch (error) {
-      next(error);
       return res.status(500).json({ message: error.message });
     }
   }
@@ -32,7 +32,6 @@ class RegistroController {
       if (Registro) return res.status(200).json({ data: Registro });
       return res.status(400).json({ message: 'Não existe registros' });
     } catch (error) {
-      next(error);
       return res.status(500).json({ message: error.message });
     }
   }
@@ -45,7 +44,6 @@ class RegistroController {
       } = req.body;
       await Service.Atualizar(Id, assunto, funcionario, email, projeto, inicio, termino);
     } catch (error) {
-      next(error);
       res.status(500).json({ message: error.message });
     }
   }

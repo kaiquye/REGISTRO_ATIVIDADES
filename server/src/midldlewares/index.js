@@ -1,4 +1,4 @@
 const { cors } = require('./cors');
-const { jwt } = require('./jwt');
+const { jwt, Auth } = require('./jwt');
 
-module.exports = { cors, jwt };
+module.exports = { cors, jwt, Auth };

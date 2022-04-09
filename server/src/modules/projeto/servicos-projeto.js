@@ -6,7 +6,28 @@ class ServicosProjeto {
     try {
       // Centro de custo : CALCULAR A DATA TRABALHADA  -  GERAR UM VALOR PARA O CENTRO DE CUSTO.
       const DateFormt = Utils.DataNovoRegistro(inicio);
-      await Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto);
+      const Instace = await Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto);
+      return Instace;
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
+
+  static async Buscar(Id) {
+    try {
+      const Instace = await Model.Buscar(Id);
+      return Instace;
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
+
+  static async BuscarTodos() {
+    try {
+      const Instace = await Model.BuscarTodos();
+      return Instace;
     } catch (error) {
       const messageError = error.message;
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);

@@ -6,7 +6,8 @@ class ControllerCentroDeCusto {
       const {
         setor, gastos, livres, empresa,
       } = req.body;
-      await Servicos.Criar(setor, gastos, livres, empresa);
+      const Instace = await Servicos.Criar(setor, gastos, livres, empresa);
+      if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       res.status(201).json({ message: ' Registro criado com sucesso !' });
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -50,7 +51,8 @@ class ControllerCentroDeCusto {
       const {
         setor, gastos, livres, empresa,
       } = req.body;
-      await Servicos.Atualizar(Id, setor, gastos, livres, empresa);
+      const Instace = await Servicos.Atualizar(Id, setor, gastos, livres, empresa);
+      if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       res.status(200).json({ message: 'Centro de custo atualizado' });
     } catch (error) {
       res.status(500).json({ message: error.message });

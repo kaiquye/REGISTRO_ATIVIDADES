@@ -6,11 +6,33 @@ class ControllerProjeto {
       const {
         setor, descricao, inicio, gerente, centrodecusto,
       } = req.body;
-      await Servicos.Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto);
-      res.status(201).json({ message: 'Projeto alocado com sucesso.' });
+      const Instace = await Servicos
+        .Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto);
+      if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
+      return res.status(201).json({ message: 'Projeto alocado com sucesso.' });
     } catch (error) {
-      next(error);
-      res.status(500).json({ message: error.message });
+      return res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async Buscar(req, res, next) {
+    try {
+      const { Id } = req.params;
+      const Instace = await Servicos.Buscar(Id);
+      if (!Instace) return res.status(200).json({ data: 'no data.' });
+      return res.status(200).json({ data: Instace });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async BuscarTodos(req, res, next) {
+    try {
+      const Instace = await Servicos.BuscarTodos();
+      if (!Instace) return res.status(200).json({ data: 'no data.' });
+      return res.status(200).json({ data: Instace });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }

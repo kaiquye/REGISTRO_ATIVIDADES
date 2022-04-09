@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { cors } = require('./midldlewares');
 
@@ -5,6 +6,7 @@ const registroRoute = require('./modules/registro/routes-registro');
 const centrodeCustoRoute = require('./modules/centrodecusto/routes-ccusto');
 const gerenteRoute = require('./modules/gerente/routes-gerente');
 const projetoRoute = require('./modules/projeto/router-projeto');
+const administradorRoute = require('./modules/administrador/routes-administrador');
 
 class Server {
   App;
@@ -21,6 +23,7 @@ class Server {
   }
 
   Routes() {
+    this.App.use('/api/login', [administradorRoute]);
     this.App.use('/api/registro', [registroRoute]);
     this.App.use('/api/centrodecusto', [centrodeCustoRoute]);
     this.App.use('/api/gerente', [gerenteRoute]);

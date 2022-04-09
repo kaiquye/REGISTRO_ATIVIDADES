@@ -4,8 +4,8 @@ class DatabaseModel {
   static async Criar(setor, gastos, livres, empresa) {
     try {
       const Setor = await ConnectionDatabase('centrodecusto').where('setor', setor).count('id').first();
-      if (Setor['count(`id`)'] >= 1) throw new Error('Centro de custo do setor já cadastrado.');
-      await ConnectionDatabase.insert({
+      if (Setor['count(`id`)'] >= 1) return new Error('Centro de custo do setor já cadastrado.');
+      return await ConnectionDatabase.insert({
         setor, gastos, livres, empresa,
       }).from('centrodecusto');
     } catch (error) {
@@ -13,19 +13,21 @@ class DatabaseModel {
     }
   }
 
-  static async Deletar(TokenCcusto) {
+  static async Deletar(Id) {
     const SQL = 'delete from centrodecusto where token_ccusto = ?';
     try {
-      await ConnectionDatabase.raw(SQL, [TokenCcusto]);
+      await ConnectionDatabase.raw(SQL, [Id]);
     } catch (error) {
       throw new Error(error.message);
     }
   }
 
-  static async Atualizar(TokenCcusto, setor, gastos, livres, empresa) {
+  static async Atualizar(Id, setor, gastos, livres, empresa) {
     try {
-      await ConnectionDatabase('centrodecusto').update(setor, gastos, livres, empresa)
-        .where({ token_ccusto: TokenCcusto });
+      const centrodecusto = await ConnectionDatabase('centrodecusto').select('id').where('id', Id);
+      if (centrodecusto[0] !== undefined) return new Error('Centro de custo não foi encontrado.');
+      return await ConnectionDatabase('centrodecusto').update(setor, gastos, livres, empresa)
+        .where({ token_ccusto: Id });
     } catch (error) {
       throw new Error(error.message);
     }

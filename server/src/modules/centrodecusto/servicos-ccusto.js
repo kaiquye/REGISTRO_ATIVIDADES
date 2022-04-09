@@ -3,7 +3,8 @@ const Model = require('./models-ccusto');
 class ServicosCcusto {
   static async Criar(setor, gastos, livres, empresa) {
     try {
-      await Model.Criar(setor.toUpperCase(), gastos, livres, empresa);
+      const Instace = await Model.Criar(setor.toUpperCase(), gastos, livres, empresa);
+      return Instace;
     } catch (error) {
       console.log(error);
       const messageError = error.message;
@@ -32,7 +33,8 @@ class ServicosCcusto {
 
   static async Atualizar(setor, gastos, livres, empresa) {
     try {
-      await Model.Atualizar(setor, gastos, livres, empresa);
+      const Instace = await Model.Atualizar(setor, gastos, livres, empresa);
+      return Instace;
     } catch (error) {
       const messageError = error.message;
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);

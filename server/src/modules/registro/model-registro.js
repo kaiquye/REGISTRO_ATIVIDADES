@@ -3,18 +3,13 @@ const { ConnectionDatabase } = require('../../database/config');
 class DatabaseModel {
   static async Criar(assunto, funcionario, email, projeto, inicio, termino, Decorrido) {
     try {
-      // ConnectionDatabase.transaction(async (trx) => {
-      //   await ConnectionDatabase('registros').transacting(trx).insert({
-      //     assunto, funcionario_id: funcionario, email, projeto_id: projeto, inicio, termino,
-      //   })
-      //   await ConnectionDatabase('centrodecusto').transacting(trx).update({
-      //   })
-      // });     
-      await ConnectionDatabase
-        .insert({
+      return await ConnectionDatabase.transaction(async (trx) => {
+        const IdCcusto = await ConnectionDatabase('projeto').transacting(trx).select('centrodecusto_id').where('id', projeto);
+        await ConnectionDatabase('registros').transacting(trx).insert({
           assunto, funcionario_id: funcionario, email, projeto_id: projeto, inicio, termino,
-        })
-        .from('registros');
+        });
+        await ConnectionDatabase('centrodecusto').transacting(trx).where('id', IdCcusto[0]['centrodecusto_id']).increment('decorrido', Decorrido);
+      });
     } catch (error) {
       throw new Error(error.message);
     }
