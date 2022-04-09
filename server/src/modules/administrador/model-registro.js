@@ -1,6 +1,6 @@
 const bycrpt = require('bcrypt');
 const { ConnectionDatabase } = require('../../database/config');
-const { Auth } = require('../../midldlewares/index')
+const { Auth } = require('../../midldlewares/index');
 
 class DatabaseModel {
   static async Criar(nome, setor, cargo, email, phone, password) {
@@ -21,9 +21,9 @@ class DatabaseModel {
     try {
       const Password = await ConnectionDatabase('administrador').select('password').where('email', email).first();
       if (!Password) return new Error('Não foi possivel encontrar usuario. Email invalido.');
-      const Compare = await bycrpt.compare(password, Password['password']);
-      console.log(Auth.GerarToken(email))
-      if (Compare) return Auth.GerarToken(email);
+      const Compare = await bycrpt.compare(password, Password.password);
+      if (Compare) return Auth.GerarToken(email, process.env.administrador);
+      return false;
     } catch (error) {
       throw new Error(error.message);
     }

@@ -4,9 +4,16 @@ class DatabaseModel {
   static async Criar(assunto, funcionario, email, projeto, inicio, termino, Decorrido) {
     try {
       return await ConnectionDatabase.transaction(async (trx) => {
+        await ConnectionDatabase('projeto').transacting(trx).increment('decorrido', Decorrido).where('id', projeto);
         const IdCcusto = await ConnectionDatabase('projeto').transacting(trx).select('centrodecusto_id').where('id', projeto);
         await ConnectionDatabase('registros').transacting(trx).insert({
-          assunto, funcionario_id: funcionario, email, projeto_id: projeto, inicio, termino,
+          assunto,
+          funcionario_id: funcionario,
+          email,
+          projeto_id: projeto,
+          inicio,
+          termino,
+          decorrido: Decorrido,
         });
         await ConnectionDatabase('centrodecusto').transacting(trx).where('id', IdCcusto[0]['centrodecusto_id']).increment('decorrido', Decorrido);
       });
@@ -35,7 +42,8 @@ class DatabaseModel {
 
   static async BuscarTodos() {
     try {
-      await ConnectionDatabase('registros').orderBy('inicio').first();
+      const Registros = await ConnectionDatabase('registros').select('*');
+      return Registros;
     } catch (error) {
       throw new Error(error.message);
     }

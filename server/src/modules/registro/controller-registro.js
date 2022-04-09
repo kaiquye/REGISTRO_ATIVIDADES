@@ -29,6 +29,7 @@ class RegistroController {
   static async BuscarTodos(req, res, next) {
     try {
       const Registro = await Service.BuscarTodos();
+      console.log(Registro)
       if (Registro) return res.status(200).json({ data: Registro });
       return res.status(400).json({ message: 'Não existe registros' });
     } catch (error) {

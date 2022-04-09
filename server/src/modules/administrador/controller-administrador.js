@@ -1,7 +1,7 @@
 const Servicos = require('./model-registro');
 
 class AdministradorController {
-  static async Criar(req, res, next) {
+  static async Criar(req, res) {
     try {
       const {
         nome, setor, cargo, email, phone, password,
@@ -14,7 +14,7 @@ class AdministradorController {
     }
   }
 
-  static async Buscar(req, res, next) {
+  static async Buscar(req, res) {
     try {
       const { email, password } = req.body;
       const Instace = await Servicos.Buscar(email, password);

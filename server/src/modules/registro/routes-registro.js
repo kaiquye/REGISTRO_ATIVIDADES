@@ -11,9 +11,9 @@ class RouteRegistro {
 
   RoutesProtegidas() {
     this.App.post('/', Controller.Criar);
-    this.App.get('/:token_registro', Controller.Buscar);
+    this.App.get('/:Id', Controller.Buscar);
     this.App.get('/', Controller.BuscarTodos);
-    this.App.patch('/:token_registro', Controller.Atualizar);
+    this.App.patch('/:Id', Controller.Atualizar);
   }
 }
 module.exports = new RouteRegistro().App;
