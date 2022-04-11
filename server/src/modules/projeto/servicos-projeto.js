@@ -2,11 +2,12 @@ const Model = require('./model-projeto');
 const Utils = require('../../utils/Date');
 
 class ServicosProjeto {
-  static async Criar(setor, descricao, inicio, gerente, centrodecusto) {
+  static async Criar(setor, descricao, inicio, gerente, centrodecusto, decorrido) {
     try {
       // Centro de custo : CALCULAR A DATA TRABALHADA  -  GERAR UM VALOR PARA O CENTRO DE CUSTO.
       const DateFormt = Utils.DataNovoRegistro(inicio);
-      const Instace = await Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto);
+      const Instace = await
+      Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto, decorrido);
       return Instace;
     } catch (error) {
       const messageError = error.message;

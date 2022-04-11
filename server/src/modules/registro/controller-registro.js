@@ -17,9 +17,9 @@ class RegistroController {
 
   static async Buscar(req, res, next) {
     try {
-      const { Id } = req.params;
-      const Registro = await Service.Buscar(Id);
-      if (Registro) return res.status(200).json({ data: Registro });
+      const { Email, Inicio, Termino } = req.params;
+      const { Registros, DiasNaoTrabalhados } = await Service.Buscar(Inicio, Termino, Email);
+      if (Registros) return res.status(200).json({ data: Registros, DiasNaoTrabalhados });
       return res.status(400).json({ message: 'registro não existe !' });
     } catch (error) {
       return res.status(500).json({ message: error.message });
@@ -29,7 +29,6 @@ class RegistroController {
   static async BuscarTodos(req, res, next) {
     try {
       const Registro = await Service.BuscarTodos();
-      console.log(Registro)
       if (Registro) return res.status(200).json({ data: Registro });
       return res.status(400).json({ message: 'Não existe registros' });
     } catch (error) {
@@ -46,6 +45,16 @@ class RegistroController {
       await Service.Atualizar(Id, assunto, funcionario, email, projeto, inicio, termino);
     } catch (error) {
       res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async BuscarRegistroeProjetos(req, res) {
+    try {
+      const ResgistroseProjetos = await Service.BuscarRegistroeProjetos();
+      if (ResgistroseProjetos) return res.status(200).json({ data: ResgistroseProjetos });
+      return res.status(400).json({ message: 'registro não existe !' });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }

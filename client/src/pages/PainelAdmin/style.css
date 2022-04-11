@@ -1,0 +1,41 @@
+.page-admin{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80vh auto;
+}
+.section-graficos{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+.section-graficos .Dashboard-admin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+}
+
+.section-graficos .grafico-pizza-projetos{
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.section-tabela{
+    grid-column: 1/3;
+    margin-top: 30px;
+}
+.section-tabela p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(43, 43, 43);
+    padding-left: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+

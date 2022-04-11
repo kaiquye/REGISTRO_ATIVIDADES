@@ -1,0 +1,30 @@
+.tabela-componente-adm{
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+}
+.tabela-componente-adm table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.tabela-componente-adm td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 4px;
+    color: rgb(27, 27, 27);
+}
+
+.tabela-componente-adm tr:nth-child(even) {
+    background-color: rgba(85, 85, 85, 0.068);
+}
+
+@media screen and (max-width: 770px) {
+    .tabela-componente-adm td, th {
+        color: red;
+    }
+}

@@ -1,13 +1,13 @@
 const Servicos = require('./servicos-projeto');
 
 class ControllerProjeto {
-  static async Criar(req, res, next) {
+  static async Criar(req, res) {
     try {
       const {
-        setor, descricao, inicio, gerente, centrodecusto,
+        setor, descricao, inicio, gerente, centrodecusto, decorrido,
       } = req.body;
       const Instace = await Servicos
-        .Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto);
+        .Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto, decorrido);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(201).json({ message: 'Projeto alocado com sucesso.' });
     } catch (error) {
@@ -15,7 +15,7 @@ class ControllerProjeto {
     }
   }
 
-  static async Buscar(req, res, next) {
+  static async Buscar(req, res) {
     try {
       const { Id } = req.params;
       const Instace = await Servicos.Buscar(Id);
@@ -26,7 +26,7 @@ class ControllerProjeto {
     }
   }
 
-  static async BuscarTodos(req, res, next) {
+  static async BuscarTodos(req, res) {
     try {
       const Instace = await Servicos.BuscarTodos();
       if (!Instace) return res.status(200).json({ data: 'no data.' });
