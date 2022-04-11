@@ -35,6 +35,16 @@ class ControllerProjeto {
       return res.status(500).json({ message: error.message });
     }
   }
+
+  static async BuscarProjetoseGerenteseCcusto(req, res) {
+    try {
+      const Instace = await Servicos.BuscarProjetoseGerenteseCcusto();
+      if (!Instace) return res.status(200).json({ data: 'no data.' });
+      return res.status(200).json({ data: Instace });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = ControllerProjeto;

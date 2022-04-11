@@ -34,5 +34,15 @@ class ServicosProjeto {
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
+
+  static async BuscarProjetoseGerenteseCcusto() {
+    try {
+      const Instace = await Model.BuscarProjetoseGerenteseCcusto();
+      return Instace[0];
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
 }
 module.exports = ServicosProjeto;

@@ -50,11 +50,11 @@ class DatabaseModel {
     }
   }
 
-  static async Buscar(inicio, termino, email) {
+  static async Buscar(inicio, email) {
     // A data esta sendo salva em UTC no banco de dados. O mes esta sendo calculado -1 ;
     const SQL = 'SELECT * FROM registros where MONTH(inicio) = ? and MONTH(termino) = ? and email = ?';
     try {
-      const Registros = await ConnectionDatabase.raw(SQL, [inicio - 1, termino - 1, email]);
+      const Registros = await ConnectionDatabase.raw(SQL, [inicio - 1, inicio - 1, email]);
       return Registros[0];
     } catch (error) {
       throw new Error(error.message);

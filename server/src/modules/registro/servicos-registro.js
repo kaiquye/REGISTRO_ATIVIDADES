@@ -17,10 +17,11 @@ class ServicosRegistro {
     }
   }
 
-  static async Buscar(Inicio, Termino, email) {
+  static async Buscar(Inicio, email) {
     try {
-      const Registros = await Model.Buscar(Inicio, Termino, email);
-      const DiasNaoTrabalhados = Dias.Calcular(Registros);
+      const Registros = await Model.Buscar(Inicio, email);
+      const Mes = Dias.CalcularDiasDoMes(Inicio);
+      const DiasNaoTrabalhados = Dias.Calcular(Registros, Mes);
       return {
         Registros,
         DiasNaoTrabalhados,

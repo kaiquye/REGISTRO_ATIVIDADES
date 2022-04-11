@@ -1,4 +1,18 @@
 .graficoProjeto_Home{
     width: 100%;
     height: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 700px) {
+    .graficoProjeto_Home{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .graficoProjeto_Home{
+        grid-template-columns: 30% 30% 30%;
+    }
 }

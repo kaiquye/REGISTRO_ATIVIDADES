@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { cloneElement, useRef } from "react";
+import { Button, Navbar, Container, Nav } from 'react-bootstrap';
 import './style.css'
 
 export const DrawerAdmin = function (props) {
@@ -20,18 +21,19 @@ export const DrawerAdmin = function (props) {
     }
 
     function openServices() {
-       return myServices.current.style.height = 'auto';
+        return myServices.current.style.height = 'auto';
     }
 
     return (
         <section ref={DrawerAdmin} className="draweradmin">
-            <div ref={mySidenav} className="sidenav">
-                <a href="#" className="closebtn" onClick={() => closeNav()}>x</a>
-                <a  onClick={() => openServices()} href="#">Serviços</a>
+            <div ref={mySidenav}   className="sidenav">
+                <p style={{paddingLeft : "15px"}} >Menu</p>
+                <Navbar.Brand style={{textAlign : 'center'}} onClick={() => closeNav()} href='#'>Voltar</Navbar.Brand>
+                <a onClick={() => openServices()} href="#">Serviços</a>
                 <div ref={myServices} className='myServices' >
                     <div>
                         <ul>
-                            <li><a href="#" >Projeto</a></li>
+                            <li><a href="/projetos" >Projeto</a></li>
                             <li><a href="#" >Centro de Custos</a></li>
                         </ul>
                     </div>
@@ -43,13 +45,16 @@ export const DrawerAdmin = function (props) {
             </div>
 
             <div ref={main}>
-                <div className="navbar">
-                    <a href="#" onClick={() => openNav()}><i className="button-navbar search"></i>Menu</a>
-                    <a href="#"> Suporte</a>
-                    <a href="#"> Novo registro</a>
-                    <input className="input-pesquisa-home" placeholder="Pesquisar por registro"/>
-                    
-                </div>
+                <Navbar bg="primary" variant="dark">
+                    <Container>
+                        <Navbar.Brand onClick={() => openNav()} href='#' >Menu</Navbar.Brand>
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">Registros</Nav.Link>
+                            <Nav.Link href="/projetos">Projetos</Nav.Link>
+                            <Nav.Link href="#pricing">Cadastro</Nav.Link>
+                        </Nav>
+                    </Container>
+                </Navbar>
             </div>
         </section >
     )

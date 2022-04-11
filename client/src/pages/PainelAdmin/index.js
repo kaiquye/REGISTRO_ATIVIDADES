@@ -5,6 +5,7 @@ import { TabelaRegistros } from "./components/Tabela-Registros";
 import { DrawerAdmin } from "../../componets/drawer-admin";
 import { GraficoCcusto } from "./components/Grafico-Ccusto";
 import './style.css'
+import { GraficoQuantidades } from "./components/Grafco-quantidade";
 
 export function PainelAdmin() {
     const { BuscarProjetos, Projetos, Registros, BuscarRegistroseProjetos } = useContext(AuthContext);
@@ -20,10 +21,6 @@ export function PainelAdmin() {
             <DrawerAdmin />
             <main className="page-admin">
                 <section className="section-graficos">
-                    <div className="Dashboard-admin">
-                        <h1>Centro de custo</h1>
-                        <GraficoCcusto/>
-                    </div>
                     {/* graficos do painel de administradores. */}
                     <div className="grafico-pizza-projetos">
                         {Projetos && <Graficos data={Projetos} />}

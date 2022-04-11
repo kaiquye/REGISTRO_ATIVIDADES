@@ -13,6 +13,7 @@ class RouteRegistro {
     this.App.post('/', Controller.Criar);
     this.App.get('/:Id', Controller.Buscar);
     this.App.get('/', Controller.BuscarTodos);
+    this.App.get('/gerente/projeto/ccusto', Controller.BuscarProjetoseGerenteseCcusto);
   }
 }
 module.exports = new RouteRegistro().App;

@@ -24,13 +24,15 @@ export function Graficos(props) {
 
     return (
         <section className='graficoProjeto_Home'>
-            <Chart
-                chartType='PieChart'
-                width='auto'
-                height='auto'
-                data={datas()}
-                options={options}
-            />
+            <div>
+                <Chart
+                    chartType='PieChart'
+                    width='100%'
+                    height='auto'
+                    data={datas()}
+                    options={options}
+                />
+            </div>
         </section>
 
     );

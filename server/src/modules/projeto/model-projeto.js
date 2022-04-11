@@ -31,6 +31,15 @@ class ModelProjeto {
       throw new Error(error.message);
     }
   }
+
+  static async BuscarProjetoseGerenteseCcusto() {
+    const SQL = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
+    try {
+      return await ConnectionDatabase.raw(SQL);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = ModelProjeto;
