@@ -5,6 +5,9 @@ import { Button } from 'react-bootstrap';
 export function FiltroProjeto(props) {
     const [data_inicio, setInico] = useState();
     const [funcionario, setFuncionario] = useState();
+    const [Gerente, setGerente] = useState();
+    const [Ccusto, setCcusto] = useState();
+
     return (
         <section>
             <div style={{ paddingLeft: '10px' }} >
@@ -12,21 +15,21 @@ export function FiltroProjeto(props) {
             </div>
             <div className='filtroprojeto'>
                 <div className='select-filtro-gerente'>
-                    <Form.Select className='select-projeto' style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} id="disabledSelect">
-                        <option>Selecione um gerente...</option>
+                    <Form.Select onChange={(e) => setGerente(e.target.value)} className='select-projeto' style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} id="disabledSelect">
+                        <option >Selecione um gerente...</option>
                         {props.data &&
                             props.data.gerente.map((gerente) => (
-                                <option>{gerente.nome}</option>
+                                <option value={gerente.id} >{gerente.nome}</option>
                             ))
                         }
                     </Form.Select>
                 </div>
                 <div className='select-filtro-diastrb'>
-                    <Form.Select style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} className='select-projeto' id="disabledSelect">
+                    <Form.Select onChange={(e) => setCcusto(e.target.value)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} className='select-projeto' id="disabledSelect">
                         <option>Centro de custo...</option>
                         {props.data &&
-                            props.data.ccusto.map((gerente) => (
-                                <option>{gerente.setor}</option>
+                            props.data.ccusto.map((ccusto) => (
+                                <option value={ccusto.id}>{ccusto.setor}</option>
                             ))
                         }
                     </Form.Select>
@@ -36,7 +39,7 @@ export function FiltroProjeto(props) {
                         <option>Selecione um gerente...</option>
                         {props.data &&
                             props.data.ccusto.map((gerente) => (
-                                <option>{gerente.setor}</option>
+                                <option  >{gerente.setor}</option>
                             ))
                         }
                     </Form.Select>
@@ -48,7 +51,7 @@ export function FiltroProjeto(props) {
                     <Form.Control style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} type="text" placeholder="Funcionários" onChange={(e) => setFuncionario(e.target.value)} />
                 </div>
                 <div>
-                    <Button onClick={() => alert(funcionario)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
+                    <Button onClick={() => props.filtrar(Gerente)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
                         Procurar
                     </Button>
                 </div>

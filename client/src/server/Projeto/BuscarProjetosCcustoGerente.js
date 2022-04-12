@@ -1,5 +1,5 @@
-import { ApiDefault } from "../api/ApiBasic";
-import { ObjetoError } from "../utils/Error";
+import { ApiDefault } from "../../api/ApiBasic";
+import { ObjetoError } from "../../utils/Error";
 
 export const BuscarProjetosCcustoGerente = async function () {
     try {

@@ -7,7 +7,7 @@ import { MenuProjeto } from "./components/menu";
 import './style.css'
 
 export function PainelProjetos() {
-    const { BuscarProjetos, Projetos } = useContext(AuthContext);
+    const { BuscarProjetos, Projetos, FiltrarProjetos } = useContext(AuthContext);
     const projeto = useRef();
     const Tabela = useRef();
     const ExcluirProjeto = useRef();
@@ -73,10 +73,7 @@ export function PainelProjetos() {
                     </div>
                     <div className="conteudo-">
                         <div ref={Tabela} className='tabela-todos-projetos-' >
-                            {Projetos &&
-                                console.log('aolskdlasdalskd', Projetos)
-                            }
-                            {Projetos && <FiltroProjeto data={Projetos} />}
+                            {Projetos && <FiltroProjeto filtrar={FiltrarProjetos} data={Projetos} />}
                             {Projetos && <TabelaProjetos data={Projetos} />}
                         </div>
                         <div ref={projeto} style={{ display: "none" }} >

@@ -45,9 +45,15 @@ class ServicosProjeto {
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
-  static async Teste() {
-    console.log('testeserv')
-    await Model.FiltrarProjetos();
+
+  static async Filtrar(Gerente, Setor, Ccusto) {
+    try {
+      const Projetos = await Model.FIltrar(Gerente, Setor, Ccusto);
+      return Projetos;
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
   }
 }
 module.exports = ServicosProjeto;

@@ -46,10 +46,15 @@ class ControllerProjeto {
     }
   }
 
-  static async Teste(req, res) {
+  static async Filtrar(req, res) {
     try {
-     await Servicos.Teste();
+      const { gerente, setor, ccusto } = req.body;
+      console.log(gerente, setor, ccusto)
+      const Instace = await Servicos.Filtrar(gerente, setor, ccusto);
+      if (!Instace) return res.status(200).json({ data: 'no data.' });
+      return res.status(200).json({ data: Instace });
     } catch (error) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }

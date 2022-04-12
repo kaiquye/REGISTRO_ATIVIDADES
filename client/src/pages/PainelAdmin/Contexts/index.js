@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import { BuscarProjetos as BuscarTodosProjetos } from "../../../server/BuscarProjetos";
-import { BuscarRegistroseProjetos as BuscarTodosRegistroseProjetos } from "../../../server/BuscarRegistroseProjetos";
+import { BuscarProjetos as BuscarTodosProjetos } from "../../../server/Projeto/BuscarProjetos";
+import { BuscarRegistroseProjetos as BuscarTodosRegistroseProjetos } from "../../../server/Projeto/BuscarRegistroseProjetos";
 
 export const AuthContext = createContext();
 
