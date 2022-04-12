@@ -1,12 +1,11 @@
 import { ApiDefault } from "../api/ApiBasic";
 import { ObjetoError } from "../utils/Error";
 
-export const BuscarProjetosCcustoGerente = async function () {
+export const BuscarRegistroseProjetos = async function () {
     try {
-        const projetos = await ApiDefault.get('/projeto/gerente/projeto/ccusto');
+        const projetos = await ApiDefault.get('/centrodecusto/');
         return projetos.data;
     } catch (error) {
-        console.log({ error })
         return ObjetoError(error.data.response.message, true);
     }
 }

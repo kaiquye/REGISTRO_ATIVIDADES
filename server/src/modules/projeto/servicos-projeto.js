@@ -7,7 +7,7 @@ class ServicosProjeto {
       // Centro de custo : CALCULAR A DATA TRABALHADA  -  GERAR UM VALOR PARA O CENTRO DE CUSTO.
       const DateFormt = Utils.DataNovoRegistro(inicio);
       const Instace = await
-      Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto, decorrido);
+        Model.Criar(setor, descricao, DateFormt, gerente, centrodecusto, decorrido);
       return Instace;
     } catch (error) {
       const messageError = error.message;
@@ -38,11 +38,16 @@ class ServicosProjeto {
   static async BuscarProjetoseGerenteseCcusto() {
     try {
       const Instace = await Model.BuscarProjetoseGerenteseCcusto();
-      return Instace[0];
+      console.log(Instace);
+      return Instace;
     } catch (error) {
       const messageError = error.message;
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
+  }
+  static async Teste() {
+    console.log('testeserv')
+    await Model.FiltrarProjetos();
   }
 }
 module.exports = ServicosProjeto;

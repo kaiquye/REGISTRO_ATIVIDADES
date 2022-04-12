@@ -14,6 +14,7 @@ class RouteRegistro {
     this.App.get('/:Id', Controller.Buscar);
     this.App.get('/', Controller.BuscarTodos);
     this.App.get('/gerente/projeto/ccusto', Controller.BuscarProjetoseGerenteseCcusto);
+    this.App.get('/teste/teste', Controller.Teste);
   }
 }
 module.exports = new RouteRegistro().App;

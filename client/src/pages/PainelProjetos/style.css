@@ -1,16 +1,50 @@
-.main-projetos{
+.main-projetos {
     width: 100%;
-    height: 120vh;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 200px auto auto;
-    grid-template-columns: auto;
-    background-color: blue;
+    grid-template-columns: 200px auto;
+    grid-template-rows: auto;
 }
-.menu-projetos{
+
+.menu-projetos {
     grid-column: 1/2;
-    background-color: red;
+    grid-row: 1/2;
+    background-color: black;
 }
-.conteudo-projetos{
+
+.conteudo-projetos {
     grid-columns: 2/3;
-    background-color: wheat;
+    grid-row: 1/2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 40% 60%;
+}
+
+.conteudo- {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.conteudo- div{
+    width: 95%;
+}
+.tabela-todos-projetos-{
+    flex-direction: column;
+}
+@media screen and (max-width : 1050px) {
+    .main-projetos {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .conteudo-projetos {
+        height: 100%;
+    }
+
+    .menu-projetos {
+        height: 100%;
+    }
 }

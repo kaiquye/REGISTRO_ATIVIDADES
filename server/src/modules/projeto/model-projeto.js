@@ -1,4 +1,5 @@
 const { ConnectionDatabase } = require('../../database/config');
+const Filtros = require('../../utils/Filtros');
 
 class ModelProjeto {
   static async Criar(setor, descricao, inicio, gerente, centrodecusto, decorrido) {
@@ -34,12 +35,28 @@ class ModelProjeto {
 
   static async BuscarProjetoseGerenteseCcusto() {
     const SQL = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
+    const SQLgrt = 'select * from gerente GROUP BY nome';
+    const SQlccusto = 'select * from centrodecusto GROUP BY setor';
     try {
-      return await ConnectionDatabase.raw(SQL);
+      return await ConnectionDatabase.transaction(async (trx) => {
+        const projeto = await ConnectionDatabase.raw(SQL).transacting(trx);
+        const gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
+        const ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
+        return ({ projeto: projeto[0], gerente: gerente[0], ccusto: ccusto[0] });
+      });
     } catch (error) {
       throw new Error(error.message);
     }
   }
+
+  static async FiltrarProjetos(gerente, setor, ccusto) {
+  try {
+    Filtros.Sql([{ campo: 'teste1', valor: 'tesad' }, { campo: 'teste1' }], [{ campo: 'teste1', sql: 'sqllllll' }, { campo: 'teste1' }]);
+  } catch (error) {
+    return console.log('ted',error);
+  }y
+  }
+
 }
 
 module.exports = ModelProjeto;

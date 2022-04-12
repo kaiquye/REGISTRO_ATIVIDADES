@@ -34,8 +34,10 @@ class DatabaseModel {
   }
 
   static async BuscarTodos() {
+    const SQL = 'select * from centrodecusto GROUP BY setor';
     try {
-      return await ConnectionDatabase('centrodecusto').select('*').where('status', 1);
+      const Ccusto = await ConnectionDatabase.raw(SQL);
+      return Ccusto[0];
     } catch (error) {
       throw new Error(error.message);
     }

@@ -1,10 +1,7 @@
 export const ProjetoTabela = function (props) {
     return (
-        props.data.data.map((registro) => (
+        props.data.projeto.map((registro) => (
             <tr>
-                {
-                    console.log('22',props.data)
-                }
                 <td>{registro.setor}</td>
                 <td>{registro.descricao}</td>
                 <td>
@@ -20,6 +17,5 @@ export const ProjetoTabela = function (props) {
                 <td>{Math.ceil(registro.decorrido.toFixed(3)) > 1 ? Math.ceil(registro.decorrido.toFixed(3)) + ' Dias' : Math.ceil(registro.decorrido.toFixed(3)) + ' Dia'}</td>
             </tr>
         ))
-
     )
 }

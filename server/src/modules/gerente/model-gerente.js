@@ -25,9 +25,10 @@ class ModelGerente {
   }
 
   static async BuscarTodos() {
+    const SQL = 'select * from gerente GROUP BY nome';
     try {
-      const Gerentes = await ConnectionDatabase('gerente').select('*');
-      return Gerentes;
+      const Gerentes = await ConnectionDatabase.raw(SQL);
+      return Gerentes[0];
     } catch (error) {
       throw new Error(error.message);
     }

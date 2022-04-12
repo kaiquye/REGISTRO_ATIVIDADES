@@ -45,6 +45,13 @@ class ControllerProjeto {
       return res.status(500).json({ message: error.message });
     }
   }
+
+  static async Teste(req, res) {
+    try {
+     await Servicos.Teste();
+    } catch (error) {
+    }
+  }
 }
 
 module.exports = ControllerProjeto;
