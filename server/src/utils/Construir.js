@@ -28,13 +28,8 @@ class Construir {
         Bindings.push(Setor);
       }
     }
-    if (Gerente === undefined, Setor === undefined, Ccusto === undefined) {
-      Query = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto'
-        + ' inner join gerente on projeto.gerente_id = gerente.id'
-        + ' inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
-    }
     console.log(Query)
-    console.log(Bindings)
+    console.log(...Bindings)
     return {
       Query,
       Bindings,

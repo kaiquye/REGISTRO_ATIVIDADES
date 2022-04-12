@@ -120,7 +120,11 @@ class ModelProjeto {
       const { Bindings, Query } = Construir.Querys(Gerente, Ccusto, Setor);
       return await ConnectionDatabase.transaction(async (trx) => {
         // buscando o projeto com base nos filtros
-        const projeto = await ConnectionDatabase.raw(Query, [...Bindings]).transacting(trx);
+        if (Bindings) {
+          var projeto = await ConnectionDatabase.raw(Query, [...Bindings]).transacting(trx);
+        } else {
+          var projeto = await ConnectionDatabase.raw(Query).transacting(trx);
+        }
         // retornando valores para popular o filtro de busca.
         const gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
         // retornando valores para popular o filtro de busca.

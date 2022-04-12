@@ -19,7 +19,7 @@ export function FiltroProjeto(props) {
                         <option >Selecione um gerente...</option>
                         {props.data &&
                             props.data.gerente.map((gerente) => (
-                                <option value={gerente.id} >{gerente.nome}</option>
+                                <option value={gerente.gerente_id} >{gerente.nome}</option>
                             ))
                         }
                     </Form.Select>
