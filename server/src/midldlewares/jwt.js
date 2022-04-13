@@ -23,11 +23,13 @@ class Auth {
 
   static async ValidadeADadmin(req, res, next) {
     const Token = req.headers['x-custom-header'];
+    console.log(Token)
     if (!Token) {
       return res.status(400).json({ message: 'Token não informado.' });
     }
     try {
       const { upn } = jwt.verify(Token, process.env.SECRET);
+      console.log(upn)
       const valido = await ConnectionDb.LoginPorEmail(upn);
       if (valido instanceof Error) {
         return res.status(400).json({ message: 'Usuario não tem permisão de admin.' });
@@ -36,6 +38,7 @@ class Auth {
       req.body.role = valido.role;
       return next();
     } catch (error) {
+      console.log(error)
       return res.status(400).json({ message: 'Sua sessão expirou.' });
     }
   }

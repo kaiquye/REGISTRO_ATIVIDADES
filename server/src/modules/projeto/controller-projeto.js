@@ -4,10 +4,11 @@ class ControllerProjeto {
   static async Criar(req, res) {
     try {
       const {
-        setor, descricao, inicio, gerente, centrodecusto, decorrido, email,
+        setor, descricao, inicio, gerente, ccusto, decorrido,
       } = req.body;
+      console.log(req.body)
       const Instace = await Servicos
-        .Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto, decorrido);
+        .Criar(setor, descricao, inicio || new Date(), gerente, ccusto, decorrido);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(201).json({ message: 'Projeto alocado com sucesso.' });
     } catch (error) {

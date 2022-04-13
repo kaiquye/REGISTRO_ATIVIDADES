@@ -40,7 +40,7 @@ export function FiltroProjeto(props) {
                         <option>Selecione um setor...</option>
                         {props.data &&
                             props.data.projeto.map((projeto) => (
-                                <option  >{projeto.setor}</option>
+                                <option value={projeto.setor} >{projeto.setor}</option>
                             ))
                         }
                     </Form.Select>
@@ -55,7 +55,9 @@ export function FiltroProjeto(props) {
                     <Button onClick={() => props.filtrar(Gerente, Setor, Ccusto)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
                         Procurar
                     </Button>
-                    <Button onClick={() => props.filtrar(undefined, undefined, undefined)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
+                    <Button onClick={() => {
+                        document.location.reload()
+                    }} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
                         Limpar
                     </Button>
                 </div>
