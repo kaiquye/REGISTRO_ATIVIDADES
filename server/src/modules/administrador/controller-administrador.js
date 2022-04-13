@@ -1,12 +1,12 @@
-const Servicos = require('./model-registro');
+const Servicos = require('./servicos-administrador');
 
 class AdministradorController {
   static async Criar(req, res) {
     try {
       const {
-        nome, setor, cargo, email, phone, password,
+        nome, setor, cargo, email, phone, role,
       } = req.body;
-      const Instace = await Servicos.Criar(nome, setor, cargo, email, phone, password);
+      const Instace = await Servicos.Criar(nome, setor, cargo, email, phone, role);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(201).json({ message: 'Administrador criado com sucesso !' });
     } catch (error) {

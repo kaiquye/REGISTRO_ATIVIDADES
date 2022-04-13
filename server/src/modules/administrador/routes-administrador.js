@@ -13,8 +13,7 @@ class RoutesAdministrador {
   }
 
   Autorizacao() {
-    this.App.use(Auth.Validade);
-    this.App.use(Auth.RolesADMIN);
+    this.App.use(Auth.ValidadeAD);
   }
 
   RoutesProtegidas() {

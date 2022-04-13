@@ -7,6 +7,7 @@ export function FiltroProjeto(props) {
     const [funcionario, setFuncionario] = useState();
     const [Gerente, setGerente] = useState();
     const [Ccusto, setCcusto] = useState();
+    const [Setor, setSetor] = useState();
 
     return (
         <section>
@@ -19,7 +20,7 @@ export function FiltroProjeto(props) {
                         <option >Selecione um gerente...</option>
                         {props.data &&
                             props.data.gerente.map((gerente) => (
-                                <option value={gerente.gerente_id} >{gerente.nome}</option>
+                                <option value={gerente.id} >{gerente.nome}</option>
                             ))
                         }
                     </Form.Select>
@@ -35,11 +36,11 @@ export function FiltroProjeto(props) {
                     </Form.Select>
                 </div>
                 <div className='select-filtro-ccusto'>
-                    <Form.Select style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} className='select-projeto' id="disabledSelect">
-                        <option>Selecione um gerente...</option>
+                    <Form.Select onChange={(e) => setSetor(e.target.value)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} className='select-projeto' id="disabledSelect">
+                        <option>Selecione um setor...</option>
                         {props.data &&
-                            props.data.ccusto.map((gerente) => (
-                                <option  >{gerente.setor}</option>
+                            props.data.projeto.map((projeto) => (
+                                <option  >{projeto.setor}</option>
                             ))
                         }
                     </Form.Select>
@@ -51,8 +52,11 @@ export function FiltroProjeto(props) {
                     <Form.Control style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} type="text" placeholder="Funcionários" onChange={(e) => setFuncionario(e.target.value)} />
                 </div>
                 <div>
-                    <Button onClick={() => props.filtrar(Gerente)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
+                    <Button onClick={() => props.filtrar(Gerente, Setor, Ccusto)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
                         Procurar
+                    </Button>
+                    <Button onClick={() => props.filtrar(undefined, undefined, undefined)} style={{ borderRadius: '15px', fontSize: '7px', height: '25px' }} variant="primary" type="button">
+                        Limpar
                     </Button>
                 </div>
             </div>

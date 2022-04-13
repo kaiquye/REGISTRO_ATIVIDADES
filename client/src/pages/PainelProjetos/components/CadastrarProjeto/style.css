@@ -1,0 +1,8 @@
+.formulario-projeto{
+    width: 10px;
+    height: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 0, 0);
+}

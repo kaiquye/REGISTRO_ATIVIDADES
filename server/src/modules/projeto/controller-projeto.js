@@ -4,7 +4,7 @@ class ControllerProjeto {
   static async Criar(req, res) {
     try {
       const {
-        setor, descricao, inicio, gerente, centrodecusto, decorrido,
+        setor, descricao, inicio, gerente, centrodecusto, decorrido, email,
       } = req.body;
       const Instace = await Servicos
         .Criar(setor, descricao, inicio || new Date(), gerente, centrodecusto, decorrido);

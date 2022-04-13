@@ -6,7 +6,6 @@ const CalcularHorasTrabalhadas = require('../../utils/CalcularHorasTrabalhadas')
 class ServicosRegistro {
   static async Criar(assunto, funcionario, email, projeto, inicio, termino) {
     try {
-      Util.VerificarMes(inicio, termino);
       const DateStart = Util.DataNovoRegistro(inicio);
       const DateEnd = Util.DataNovoRegistro(termino);
       const Decorrido = CalcularHorasTrabalhadas.CalcularHoras(DateStart, DateEnd);

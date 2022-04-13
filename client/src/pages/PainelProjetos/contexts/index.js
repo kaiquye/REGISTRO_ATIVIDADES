@@ -12,7 +12,7 @@ export const AuthContextProvider = function ({ children }) {
         setProjetos(Projetos_.data);
     }
     const FiltrarProjetos = async function (Gerente, Setor, Ccusto) {
-        console.log(Gerente, Setor, Ccusto)
+        console.log('G',Gerente, 's',Setor, Ccusto)
         const Projetos_ = await Filtrar(Gerente, Setor, Ccusto);
         console.log('teste', Projetos_)
         setProjetos(Projetos_.data)

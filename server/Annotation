@@ -10,7 +10,8 @@ Envio a data, converto para mills
 -(new Date(1234575090000))
 - Pege as info para mostrar na tela
 (new Date(1234575090000).getDate())
-## Roles 
+## AUTENTICACAO
+- O nome salvo nos registro são pegos no cabeçalho requisão. Esse nome vem do ReactAdal 
 - ADM Roles 
 - quanod o usuario logar pegar a roles do token;
 - Buscar Usuario e calcular as horas trablahdas

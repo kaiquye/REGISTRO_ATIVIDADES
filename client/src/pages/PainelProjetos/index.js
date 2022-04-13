@@ -4,6 +4,7 @@ import { FiltroProjeto } from "./components/Filtro";
 import { TabelaProjetos } from "./components/tabela-projetos";
 import { AuthContext } from "./contexts"
 import { MenuProjeto } from "./components/menu";
+import { NovoProjeto } from './components/CadastrarProjeto'
 import './style.css'
 
 export function PainelProjetos() {
@@ -66,9 +67,10 @@ export function PainelProjetos() {
                     <MenuProjeto condicao={openNewProject} />
                 </div>
                 <div className='conteudo-projetos'>
-                    <div>
+                    <div className="top-projetos">
                         <div>
-                            numeros de projetos ativos
+                            <h1>Dashboard de projetos</h1>
+                            <p>Listando todos os projetos cadastros.</p>
                         </div>
                     </div>
                     <div className="conteudo-">
@@ -77,7 +79,7 @@ export function PainelProjetos() {
                             {Projetos && <TabelaProjetos data={Projetos} />}
                         </div>
                         <div ref={projeto} style={{ display: "none" }} >
-                            // projeto
+                            <NovoProjeto />
                         </div>
                         <div ref={ExcluirProjeto} style={{ display: "none" }} >
                             // ExcluirProjeto

@@ -115,20 +115,25 @@ class ModelProjeto {
   static async FIltrar(Gerente, Ccusto, Setor) {
     const SQLgrt = 'select * from gerente GROUP BY nome';
     const SQlccusto = 'select * from centrodecusto GROUP BY setor';
+    const Sql = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto'
+      + ' inner join gerente on projeto.gerente_id = gerente.id'
+      + ' inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
     try {
       // construindo query de busca.
       const { Bindings, Query } = Construir.Querys(Gerente, Ccusto, Setor);
+      console.log('tedted',Bindings)
       return await ConnectionDatabase.transaction(async (trx) => {
         // buscando o projeto com base nos filtros
-        if (Bindings) {
+        if (Bindings.length) {
           var projeto = await ConnectionDatabase.raw(Query, [...Bindings]).transacting(trx);
         } else {
-          var projeto = await ConnectionDatabase.raw(Query).transacting(trx);
+          var projeto = await ConnectionDatabase.raw(Sql).transacting(trx);
         }
         // retornando valores para popular o filtro de busca.
         const gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
         // retornando valores para popular o filtro de busca.
         const ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
+        console.log(projeto[0])
         return ({ projeto: projeto[0], gerente: gerente[0], ccusto: ccusto[0] });
       });
     } catch (error) {

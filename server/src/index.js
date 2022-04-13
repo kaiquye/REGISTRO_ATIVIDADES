@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { cors } = require('./midldlewares');
+const { cors, Auth } = require('./midldlewares');
 
 const registroRoute = require('./modules/registro/routes-registro');
 const centrodeCustoRoute = require('./modules/centrodecusto/routes-ccusto');
@@ -20,6 +20,7 @@ class Server {
   middlewares() {
     this.App.use(cors());
     this.App.use(express.json());
+    this.App.use(Auth.ValidadeAD);
   }
 
   Routes() {

@@ -5,13 +5,15 @@ class Construir {
     let Query = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto'
       + ' inner join gerente on projeto.gerente_id = gerente.id'
       + ' inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where';
-
-    if (Gerente > 0 && Gerente !== undefined) {
+    if (Gerente !== undefined) {
+      console.log('passou aqui 1');
       Query += ' projeto.gerente_id  = ?';
-      Bindings.push(Number(Gerente));
+      Bindings.push(Gerente);
     }
-    if (Ccusto !== undefined && Ccusto !== null && Ccusto > 0) {
-      if (Gerente > 0 && Gerente !== undefined) {
+    if (Ccusto !== undefined && Ccusto !== undefined) {
+      console.log('passou aqui 2')
+      if (Gerente !== undefined) {
+        console.log('passou aqui 3')
         Query += ' and centrodecusto_id = ?';
         Bindings.push(Number(Ccusto));
       } else {
@@ -19,12 +21,12 @@ class Construir {
         Bindings.push(Number(Ccusto));
       }
     }
-    if (Setor !== undefined && Setor !== null) {
+    if (Setor !== undefined) {
       if (Ccusto !== undefined || Gerente !== undefined) {
         Query += ' and projeto.setor = ?';
         Bindings.push(Setor);
       } else {
-        Query += ' setor = ?';
+        Query += ' projeto.setor = ?';
         Bindings.push(Setor);
       }
     }

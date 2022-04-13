@@ -1,26 +1,43 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const ConnectionDb = require('../modules/administrador/model-registro');
 
 class Auth {
   static GerarToken(email, roles) {
     return jwt.sign({ email, roles }, process.env.SECRET, { expiresIn: process.env.EXPIRESIN });
   }
 
-  static Validade(req, res, next) {
-    const { token } = req.body;
+  static ValidadeAD(req, res, next) {
+    const Token = req.headers['x-custom-header'];
+    if (!Token) {
+      return res.status(400).json({ message: 'Token não informado.' });
+    }
     try {
-      const { roles } = jwt.verify(token, process.env.SECRET);
-      req.headers.authorization = roles;
+      const { upn } = jwt.verify(Token, process.env.SECRET);
+      req.body.emailToken = upn;
       return next();
     } catch (error) {
       return res.status(400).json({ message: 'Usuario não tem permisão.' });
     }
   }
 
-  static RolesADMIN(req, res, next) {
-    const roles = req.headers.authorization;
-    if (roles === process.env.administrador) return next();
-    return res.status(400).json({ message: 'usuario não tem acesso de administrador' });
+  static async ValidadeADadmin(req, res, next) {
+    const Token = req.headers['x-custom-header'];
+    if (!Token) {
+      return res.status(400).json({ message: 'Token não informado.' });
+    }
+    try {
+      const { upn } = jwt.verify(Token, process.env.SECRET);
+      const valido = await ConnectionDb.LoginPorEmail(upn);
+      if (valido instanceof Error) {
+        return res.status(400).json({ message: 'Usuario não tem permisão de admin.' });
+      }
+      req.body.email = upn;
+      req.body.role = valido.role;
+      return next();
+    } catch (error) {
+      return res.status(400).json({ message: 'Sua sessão expirou.' });
+    }
   }
 }
 

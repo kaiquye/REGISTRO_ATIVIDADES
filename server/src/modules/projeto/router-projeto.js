@@ -1,12 +1,18 @@
 const { Router } = require('express');
 const Controller = require('./controller-projeto');
+const { Auth } = require('../../midldlewares/index')
 
 class RouteRegistro {
   App;
 
   constructor() {
     this.App = Router();
+    this.Middleware();
     this.RoutesProtegidas();
+  }
+
+  Middleware() {
+    this.App.use(Auth.ValidadeADadmin);
   }
 
   RoutesProtegidas() {
