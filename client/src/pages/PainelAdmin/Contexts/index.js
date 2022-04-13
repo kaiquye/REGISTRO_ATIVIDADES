@@ -16,7 +16,7 @@ export function AuthContextProvider({ children }) {
 
     const BuscarRegistroseProjetos = async function () {
         const Registros_ = await BuscarTodosRegistroseProjetos();
-        console.log(Registros_)
+        console.log('tedte',Registros_)
         setRegistros(Registros_)
     }
 

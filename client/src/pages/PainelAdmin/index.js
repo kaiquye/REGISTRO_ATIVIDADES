@@ -5,7 +5,7 @@ import { TabelaRegistros } from "./components/Tabela-Registros";
 import { DrawerAdmin } from "../../componets/drawer-admin";
 import { GraficoCcusto } from "./components/Grafico-Ccusto";
 import './style.css'
-import { GraficoQuantidades } from "./components/Grafco-quantidade";
+import imgError from './others.png'
 
 export function PainelAdmin() {
     const { BuscarProjetos, Projetos, Registros, BuscarRegistroseProjetos } = useContext(AuthContext);
@@ -19,21 +19,28 @@ export function PainelAdmin() {
     return (
         <>
             <DrawerAdmin />
-            <main className="page-admin">
-                <section className="section-graficos">
-                    {/* graficos do painel de administradores. */}
-                    <div className="grafico-pizza-projetos">
-                        {Projetos && <Graficos data={Projetos} />}
-                    </div>
-                </section>
-                <section className="section-tabela">
-                    {/* lista de registro de todos os usuarios */}
-                    <div>
-                        <p>Registros atrasados</p>
-                        {Registros && <TabelaRegistros data={Registros} />}
-                    </div>
-                </section>
-            </main>
+            {!Projetos > 0 ? <div className="mensagem-sem-projeto">
+                <img src={imgError} style={{ width: '10%' }} />
+                <h3>Nenhum registro foi encontrado.</h3>
+                <button>Cadastrar novo registro</button>
+            </div>
+                :
+                <main className="page-admin">
+                    <section className="section-graficos">
+                        {/* graficos do painel de administradores. */}
+                        <div className="grafico-pizza-projetos">
+                            {Projetos && <Graficos data={Projetos} />}
+                        </div>
+                    </section>
+                    <section className="section-tabela">
+                        {/* lista de registro de todos os usuarios */}
+                        <div>
+                            <p>Registros atrasados</p>
+                            {Registros && <TabelaRegistros data={Registros} />}
+                        </div>
+                    </section>
+                </main>}
+
         </>
     )
 }

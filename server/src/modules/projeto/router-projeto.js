@@ -21,6 +21,7 @@ class RouteRegistro {
     this.App.get('/', Controller.BuscarTodos);
     this.App.get('/gerente/projeto/ccusto', Controller.BuscarProjetoseGerenteseCcusto);
     this.App.post('/filtrar/projetos', Controller.Filtrar);
+    this.App.delete('/:Id', Controller.Apagar);
   }
 }
 module.exports = new RouteRegistro().App;

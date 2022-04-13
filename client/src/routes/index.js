@@ -9,7 +9,7 @@ export const Router = function () {
         <BrowserRouter>
             <ContextPainelAdmin>
                 <Routes>
-                    <Route path="/dahs-administrador" element={<PainelAdmin />} />
+                    <Route path="/" element={<PainelAdmin />} />
                 </Routes>
             </ContextPainelAdmin>
             <ContextProjetos>

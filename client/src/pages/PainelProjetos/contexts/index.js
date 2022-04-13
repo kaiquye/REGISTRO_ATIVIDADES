@@ -4,6 +4,7 @@ import { BuscarProjetosCcustoGerente } from "../../../server/Projeto/BuscarProje
 import { FiltrarProjetos as Filtrar } from "../../../server/Projeto/Filtrar";
 import { BuscarTodosCcustos } from "../../../server/CentroDeCusto/BuscarTodosCcustos";
 import { NovoProjeto } from "../../../server/Projeto/NovoProjeto";
+import { ApagarProjeto } from '../../../server/Projeto/ApagarProjeto';
 
 export const iProjeto = {
     setor: '',
@@ -44,8 +45,12 @@ export const AuthContextProvider = function ({ children }) {
             return document.location.reload();
         }
     }
+    const Apagar = async function (Id) {
+        alert('tedted')
+       await ApagarProjeto(Id);
+    }
     return (
-        <AuthContext.Provider value={{ Filtro, BuscarProjetos, BuscarGerentes, FiltrarProjetos, BuscarCcustos, CadastrarProjeto }} >
+        <AuthContext.Provider value={{ Filtro, BuscarProjetos, BuscarGerentes, FiltrarProjetos, BuscarCcustos, CadastrarProjeto, Apagar }} >
             {children}
         </AuthContext.Provider>
     )

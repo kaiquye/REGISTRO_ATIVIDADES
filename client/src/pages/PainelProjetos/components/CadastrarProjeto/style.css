@@ -1,23 +1,29 @@
-.formulario-projeto{
+.formulario-projeto {
     width: 100%;
     height: auto;
     height: auto;
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(226, 226, 226);
     padding: 24px;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-radius: 14px ;
-    box-shadow: 3px 1px  3px 5px rgba(223, 223, 223, 0.707) ;
+    border-radius: 14px;
 }
+
 .formulario-projeto input {
     font-size: 10px;
 }
-.formulario-projeto select{
+
+.formulario-projeto select {
     font-size: 10px;
 }
-.error-message{
+
+.button-cadastrar {
+    font-size: 10px;
+    background-color: red;
+}
+
+.error-message {
     color: red;
     font-size: 9px;
 }

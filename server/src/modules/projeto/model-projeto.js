@@ -25,14 +25,6 @@ class ModelProjeto {
     }
   }
 
-  static async BuscarTodos() {
-    try {
-      return await ConnectionDatabase('projeto').select('*');
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-
   static async BuscarProjetoseGerenteseCcusto() {
     const SQL = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
     const SQLgrt = 'select * from gerente GROUP BY nome';
@@ -52,66 +44,6 @@ class ModelProjeto {
     }
   }
 
-  static async Filtrars(Gerente = 2, Setor = undefined, Ccusto = undefined) {
-    const SQL = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id';
-    const SqlByGenreteByCcustoBySetor = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.gerente_id  = ?  and projeto.centrodecusto_id = ? and projeto.setor = ? ';
-    const SqlByCcustoBysetor = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.centrodecusto_id  = ? and projeto.Setor = ?  ';
-    const SqlByGerenteByCcusto = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.gerente_id = ? and projeto.centrodecusto_id ';
-    const SqlByGerenteBySetor = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.gerente_id  = ? and projeto.setor =  ?  ';
-    const SqlBySetor = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.setor  = ? ';
-    const SqlByCcusto = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.Ccusto  = ? ';
-    const SqlByGerente = 'SELECT projeto.*, gerente.nome as gerente, ccusto.setor as setor_ccusto from projeto inner join gerente on projeto.gerente_id = gerente.id  inner join centrodecusto as ccusto on  ccusto.id = projeto.centrodecusto_id where projeto.gerente_id  = ? ';
-    const SQLgrt = 'select * from gerente GROUP BY nome';
-    const SQlccusto = 'select * from centrodecusto GROUP BY setor';
-    try {
-      return await ConnectionDatabase.transaction(async (trx) => {
-        let projeto;
-        let gerente;
-        let ccusto;
-        if (Gerente && Setor.length && Ccusto > 0) {
-          projeto = await ConnectionDatabase
-            .raw(SqlByGenreteByCcustoBySetor, [Gerente, Setor, Ccusto]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Gerente && Setor.length > 0) {
-          projeto = await ConnectionDatabase
-            .raw(SqlByGerenteBySetor, [Gerente, Setor]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Gerente && Ccusto > 0) {
-          projeto = await ConnectionDatabase
-            .raw(SqlByGerenteByCcusto, [Gerente, Ccusto]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Setor && Ccusto > 0) {
-          projeto = await ConnectionDatabase
-            .raw(SqlByCcustoBysetor, [Ccusto, Setor]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Setor.length > 0) {
-          projeto = await ConnectionDatabase.raw(SqlBySetor, [Setor]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Gerente > 0) {
-          projeto = await ConnectionDatabase.raw(SqlByGerente, [Gerente]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else if (Ccusto > 0) {
-          projeto = await ConnectionDatabase.raw(SqlByCcusto, [Ccusto]).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        } else {
-          projeto = await ConnectionDatabase.raw(SQL).transacting(trx);
-          gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
-          ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        }
-        return ({ projeto: projeto[0], gerente: gerente[0], ccusto: ccusto[0] });
-      });
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-
   static async FIltrar(Gerente, Ccusto, Setor) {
     const SQLgrt = 'select * from gerente GROUP BY nome';
     const SQlccusto = 'select * from centrodecusto GROUP BY setor';
@@ -121,7 +53,7 @@ class ModelProjeto {
     try {
       // construindo query de busca.
       const { Bindings, Query } = Construir.Querys(Gerente, Ccusto, Setor);
-      console.log('tedted',Bindings)
+      console.log('tedted', Bindings)
       return await ConnectionDatabase.transaction(async (trx) => {
         // buscando o projeto com base nos filtros
         if (Bindings.length) {
@@ -133,9 +65,20 @@ class ModelProjeto {
         const gerente = await ConnectionDatabase.raw(SQLgrt).transacting(trx);
         // retornando valores para popular o filtro de busca.
         const ccusto = await ConnectionDatabase.raw(SQlccusto).transacting(trx);
-        console.log(projeto[0])
         return ({ projeto: projeto[0], gerente: gerente[0], ccusto: ccusto[0] });
       });
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  static async Apagar(Id) {
+    try {
+      if (!Id) {
+        return new Error('id não foi informado.');
+      }
+      const Instace = await ConnectionDatabase('projeto').del().where('id', Id);
+      console.log(Instace)
     } catch (error) {
       throw new Error(error.message);
     }

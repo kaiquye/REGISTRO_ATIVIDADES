@@ -6,7 +6,7 @@ class RegistroController {
       const {
         assunto, funcionario, projeto, inicio, termino, email,
       } = req.body;
-      console.log(email)
+      console.log('tedted', req.body);
       const Instace = await Service
         .Criar(assunto, funcionario, email, projeto, inicio || new Date(), termino);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });

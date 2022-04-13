@@ -76,7 +76,7 @@ export function NovoProjeto(props) {
                         </Form.Select>
                     </Form.Group>
                 </Row>
-                <Button variant="primary" type="submit">
+                <Button style={{ fontSize: "10px" }} type="submit">
                     Cadastrar
                 </Button>
             </Form>

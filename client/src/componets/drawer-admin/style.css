@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     border: none;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(37, 37, 37);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -21,12 +21,14 @@
     padding: 8px 8px 8px 15px;
     text-decoration: none;
     font-size: 10px;
-    color: #050505;
+    color: #dadada;
     display: block;
     transition: 0.7s;
 }
-.sidenav a:hover{
-    background-color: rgba(174, 174, 255, 0.309);
+
+.sidenav a:hover {
+    background-color: rgba(245, 245, 245, 0.309);
+    color: black;
 }
 
 .sidenav .closebtn {
@@ -68,7 +70,13 @@
     background-color: blueviolet;
     overflow: auto
 }
-.navbar ::-webkit-input-placeholder  { color:rgb(228, 228, 228); font-size: 8px; padding-left: 5px;}
+
+.navbar ::-webkit-input-placeholder {
+    color: rgb(228, 228, 228);
+    font-size: 8px;
+    padding-left: 5px;
+}
+
 .navbar .input-pesquisa-home {
     margin-top: 2px;
     width: 60%;

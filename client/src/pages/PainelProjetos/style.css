@@ -28,19 +28,23 @@
     justify-content: center;
     align-items: center;
 }
+
 .conteudo- div {
     width: 95%;
 }
-.conteudo- .formulario-novo{
+
+.conteudo- .formulario-novo {
     display: flex;
     flex-direction: column;
     font-size: 12px;
     padding: 10px;
 }
-.conteudo .formulario{
+
+.conteudo .formulario {
     width: 100%;
     background-color: blue;
 }
+
 .tabela-todos-projetos- {
     flex-direction: column;
 }
@@ -52,6 +56,21 @@
     align-items: center;
 }
 
+.navegacao-adm .actives a {
+    text-decoration: none;
+    color: blue;
+}
+
+.navegacao-adm {
+    box-shadow: rgba(0, 0, 0, 0.089) 1px 1px 1px 1px;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+.navegacao-adm a {
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    text-decoration: none;
+}
 .top-projetos div {
     width: 95%;
     text-align: center;
@@ -59,7 +78,7 @@
     color: rgb(88, 88, 88);
 }
 
-.editar-projeto{
+.editar-projeto {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,33 +88,41 @@
     padding-right: 40px;
     box-shadow: rgba(174, 174, 174, 0.562) 3px 3px 3px 3px;
 }
-.filtro-editar-projeto{
+
+.filtro-editar-projeto {
     display: flex;
     width: 50px;
     flex-direction: column;
     align-items: flex-end;
     padding-right: 50px;
 }
+
 .filtro-editar-projeto div {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-.filtro-editar-projeto div button{
+
+.filtro-editar-projeto div button {
     margin-top: 10px;
 }
-.filtro-editar-projeto div input{
+
+.filtro-editar-projeto div input {
     margin-top: 10px;
 }
-.filtro-editar-projeto div select{
+
+.filtro-editar-projeto div select {
     margin-top: 10px;
 }
-.tabela-editar-anuncio{
+
+.tabela-editar-anuncio {
     width: 600px;
 }
-.tabela-editar-anuncio table  {
+
+.tabela-editar-anuncio table {
     width: 700px;
 }
+
 @media screen and (max-width : 1050px) {
     .main-projetos {
         width: 100%;
@@ -111,11 +138,12 @@
         height: 100%;
     }
 
-    .editar-projeto{
+    .editar-projeto {
         display: flex;
         flex-direction: column;
     }
-    .filtro-editar-projeto div{
+
+    .filtro-editar-projeto div {
         display: flex;
         flex-direction: row;
     }

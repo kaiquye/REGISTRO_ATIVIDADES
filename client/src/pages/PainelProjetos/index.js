@@ -6,10 +6,12 @@ import { AuthContext } from "./contexts"
 import { MenuProjeto } from "./components/menu";
 import { NovoProjeto } from './components/CadastrarProjeto'
 import { Loading } from "../../componets/Loading";
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './style.css'
+import logo from './others.png'
 
 export function PainelProjetos() {
-    const { Filtro, BuscarProjetos, FiltrarProjetos, BuscarGerentes, BuscarCcustos } = useContext(AuthContext);
+    const { Filtro, BuscarProjetos, FiltrarProjetos, BuscarGerentes, BuscarCcustos, Apagar } = useContext(AuthContext);
     const [Carregando, setCarregando] = useState(false);
     const [Gerentes, setGerentes] = useState();
     const [Ccustos, setCcusto] = useState();
@@ -91,25 +93,52 @@ export function PainelProjetos() {
                         <>
                             <div className="top-projetos">
                                 <div>
-                                    <h1>Dashboard de projetos</h1>
+                                    <h1>Dashboard de projetos <img style={{ width: '35px' }} src={logo} /></h1>
                                     <p>Listando todos os projetos cadastros.</p>
                                 </div>
                             </div>
                             <div className="conteudo-">
                                 <div ref={Tabela} className='tabela-todos-projetos-' >
+                                    <Breadcrumb className='navegacao-adm' >
+                                        <Breadcrumb.Item href="/home">Home</Breadcrumb.Item>
+                                        <Breadcrumb.Item className='actives' >
+                                            Projetos
+                                        </Breadcrumb.Item>
+                                    </Breadcrumb>
                                     {Projetos && <FiltroProjeto filtrar={FiltrarProjetos} data={Projetos} />}
-                                    {Projetos && <TabelaProjetos data={Projetos} />}
+                                    {Projetos && <TabelaProjetos apagar={Apagar} data={Projetos} />}
                                 </div>
                                 <div className='formulario-novo' ref={projeto} style={{ display: "none" }} >
+                                    <Breadcrumb className='navegacao-adm'>
+                                        <Breadcrumb.Item href="/home">Home</Breadcrumb.Item>
+                                        <Breadcrumb.Item href="/projetos">
+                                            Projetos
+                                        </Breadcrumb.Item>
+                                        <Breadcrumb.Item className='actives'>Novo projeto</Breadcrumb.Item>
+                                    </Breadcrumb>
                                     <h3>Cadastro de projetos</h3>
                                     <p>Formulario de cadastro de novos projetos</p>
                                     <NovoProjeto Gerentes={Gerentes} Ccusto={Ccustos} />
                                 </div>
                                 <div className='editar-projeto' ref={Editar} style={{ display: "none" }} >
                                     <div className='filtro-editar-projeto'>
+                                        <Breadcrumb className='navegacao-adm'>
+                                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                                            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+                                                Library
+                                            </Breadcrumb.Item>
+                                            <Breadcrumb.Item >Data</Breadcrumb.Item>
+                                        </Breadcrumb>
                                         {Projetos && <FiltroProjeto filtrar={FiltrarProjetos} data={Projetos} />}
                                     </div>
                                     <div className='tabela-editar-anuncio'>
+                                        <Breadcrumb className='navegacao-adm'>
+                                            <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+                                            <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+                                                Library
+                                            </Breadcrumb.Item>
+                                            <Breadcrumb.Item >Data</Breadcrumb.Item>
+                                        </Breadcrumb>
                                         {Projetos && <TabelaProjetos data={Projetos} />}
                                     </div>
                                 </div>

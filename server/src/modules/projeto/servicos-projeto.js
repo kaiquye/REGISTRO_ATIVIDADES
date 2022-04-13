@@ -55,5 +55,15 @@ class ServicosProjeto {
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
+
+  static async Apagar(Id) {
+    try {
+      const Instace = await Model.Apagar(Id);
+      return Instace;
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
 }
 module.exports = ServicosProjeto;

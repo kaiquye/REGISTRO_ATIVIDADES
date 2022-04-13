@@ -1,0 +1,12 @@
+.button-apagar-projeto {
+    background-color: rgba(71, 39, 39, 0);
+    border: none;
+    padding-left: 6px;
+}
+
+.acoes-tabela-projeto {
+    background-color: red;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
