@@ -4,6 +4,7 @@ import { Graficos } from "./components/Grafico-Projeto/index"
 import { TabelaRegistros } from "./components/Tabela-Registros";
 import { DrawerAdmin } from "../../componets/drawer-admin";
 import { GraficoCcusto } from "./components/Grafico-Ccusto";
+import { MenuProjeto } from './components/menu/index'
 import './style.css'
 import imgError from './others.png'
 
@@ -19,13 +20,16 @@ export function PainelAdmin() {
     return (
         <>
             <DrawerAdmin />
-            {!Projetos > 0 ? <div className="mensagem-sem-projeto">
+            {!Projetos < 0 ? <div className="mensagem-sem-projeto">
                 <img src={imgError} style={{ width: '10%' }} />
                 <h3>Nenhum registro foi encontrado.</h3>
                 <button>Cadastrar novo registro</button>
             </div>
                 :
                 <main className="page-admin">
+                    <div className='menu-registros' >
+                        <MenuProjeto />
+                    </div>
                     <section className="section-graficos">
                         {/* graficos do painel de administradores. */}
                         <div className="grafico-pizza-projetos">
@@ -34,7 +38,7 @@ export function PainelAdmin() {
                     </section>
                     <section className="section-tabela">
                         {/* lista de registro de todos os usuarios */}
-                        <div>
+                        <div className='TABELA-ADM'>
                             <p>Registros atrasados</p>
                             {Registros && <TabelaRegistros data={Registros} />}
                         </div>

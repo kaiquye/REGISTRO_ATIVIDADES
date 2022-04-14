@@ -17,6 +17,7 @@ class Auth {
       req.body.emailToken = upn;
       return next();
     } catch (error) {
+      console.log(error)
       return res.status(400).json({ message: 'Usuario não tem permisão.' });
     }
   }

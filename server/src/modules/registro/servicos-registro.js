@@ -58,6 +58,15 @@ class ServicosRegistro {
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
+
+  static async Filtrar(Data, Setor, Ccusto, email) {
+    try {
+      return await Model.Filtrar(Data, Setor, Ccusto, email);
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
 }
 
 module.exports = ServicosRegistro;

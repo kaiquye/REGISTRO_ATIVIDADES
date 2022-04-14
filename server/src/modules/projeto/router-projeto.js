@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const Controller = require('./controller-projeto');
-const { Auth } = require('../../midldlewares/index')
+const { Auth } = require('../../midldlewares/index');
 
 class RouteRegistro {
   App;

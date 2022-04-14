@@ -12,12 +12,11 @@ export function MenuProjeto(props) {
                 <label>Menu lateral</label>
             </div>
             <div className='buttos-menulateralprojeto'>
-                <button className='button-menulateralprojeto ' onClick={() => props.condicao("INICIO")} ><img style={{ width: '15px' }} src={logo} /> Todos projetos</button>
-                <button className='button-menulateralprojeto ' onClick={() => props.condicao("PROJETO")} ><img style={{ width: '15px' }} src={logo} /> Novo Projeto</button>
+                <button className='button-menulateralprojeto ' onClick={() => props.condicao("INICIO")} ><img style={{ width: '15px' }} src={logo} /> Novo Registro</button>
                 {/* <button className='button-menulateralprojeto ' onClick={() => props.condicao('EXCLUIR')}>Excluir projeto</button> */}
                 {/* <button className='button-menulateralprojeto ' onClick={() => props.condicao('GERENTE')}> gerente</button> */}
                 {/* <button className='button-menulateralprojeto ' onClick={() => props.condicao('PROCURA')}>Procura Projeto</button> */}
-                <button className='button-menulateralprojeto' > <img style={{ width: '25px', paddingRight: '10px' }} src={voltar} /> <a style={{color : 'white', textDecoration : 'none'}} href='/'>Voltar</a> </button>
+                <button className='button-menulateralprojeto' > <img style={{ width: '25px', paddingRight: '10px' }} src={voltar} /> <a style={{color : 'white', textDecoration : 'none'}} href='/'>Sair</a> </button>
             </div>
         </section>
     )

@@ -5,7 +5,7 @@ export const RegistrosTabela = function (props) {
         props.data.data.map((registro) => (
             <tr>
                 {
-                    console.log(props.data)
+                    console.log('tttttttttttt',props.data)
                 }
                 <td>{registro.assunto}</td>
                 <td>

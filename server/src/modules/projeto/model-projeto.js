@@ -1,5 +1,5 @@
 const { ConnectionDatabase } = require('../../database/config');
-const Construir = require('../../utils/Construir');
+const Construir = require('./util');
 
 class ModelProjeto {
   static async Criar(setor, descricao, inicio, gerente, centrodecusto, decorrido) {
@@ -20,6 +20,14 @@ class ModelProjeto {
   static async Buscar(Id) {
     try {
       return await ConnectionDatabase('projeto').select('*').where('id', Id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  static async BuscarTodos(Id) {
+    try {
+      return await ConnectionDatabase('projeto').select('*');
     } catch (error) {
       throw new Error(error.message);
     }
@@ -53,7 +61,6 @@ class ModelProjeto {
     try {
       // construindo query de busca.
       const { Bindings, Query } = Construir.Querys(Gerente, Ccusto, Setor);
-      console.log('tedted', Bindings)
       return await ConnectionDatabase.transaction(async (trx) => {
         // buscando o projeto com base nos filtros
         if (Bindings.length) {
@@ -77,8 +84,7 @@ class ModelProjeto {
       if (!Id) {
         return new Error('id não foi informado.');
       }
-      const Instace = await ConnectionDatabase('projeto').del().where('id', Id);
-      console.log(Instace)
+      await ConnectionDatabase('projeto').del().where('id', Id);
     } catch (error) {
       throw new Error(error.message);
     }

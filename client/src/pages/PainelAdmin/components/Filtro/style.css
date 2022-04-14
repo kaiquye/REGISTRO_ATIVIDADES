@@ -1,0 +1,24 @@
+.filtroprojeto{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 5px;
+}
+.select-filtro-gerente{
+    width: auto;
+}
+.select-projeto select{
+    border-radius: 40px;
+}
+@media screen and (max-width : 450px) {
+    .filtroprojeto{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width : 450px) {
+    .filtroprojeto{
+        display: grid;
+        grid-template-columns:  auto;
+    }
+}

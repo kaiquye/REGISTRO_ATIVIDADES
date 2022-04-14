@@ -49,6 +49,20 @@ class RegistroController {
     }
   }
 
+  static async Filtrar(req, res, next) {
+    try {
+      const {
+        Data, Setor, Ccusto, email,
+      } = req.body;
+      const Instace = await Service.Filtrar(Data, Setor, Ccusto, email);
+      if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
+      if (Instace) return res.status(200).json({ data: Instace });
+      return res.status(400).json({ message: 'Não existe registros' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   static async BuscarRegistroeProjetos(req, res) {
     try {
       const ResgistroseProjetos = await Service.BuscarRegistroeProjetos();

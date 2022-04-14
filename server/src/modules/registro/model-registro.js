@@ -1,4 +1,5 @@
 const { ConnectionDatabase } = require('../../database/config');
+const MontarQuery = require('./util');
 
 class DatabaseModel {
   static async Criar(assunto, funcionario, email, projeto, inicio, termino, Decorrido) {
@@ -65,6 +66,27 @@ class DatabaseModel {
     const SQL = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
       const RegistroseProjetos = await ConnectionDatabase.raw(SQL);
+      return RegistroseProjetos[0];
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  static async Filtrar(Data, Setor, Ccusto, email) {
+    const SQLDefault = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
+    try {
+      const campos = MontarQuery.ValidarCampos(Data, Setor, Ccusto, email);
+      console.log(campos)
+      if (campos instanceof Error) {
+        console.log('E um error')
+        return campos;
+      }
+      const { Query, Bindings } = MontarQuery.Querys(campos);
+      if (!Bindings.length) {
+        const RegistroseProjetos = await ConnectionDatabase.raw(SQLDefault);
+        return RegistroseProjetos[0];
+      }
+      const RegistroseProjetos = await ConnectionDatabase.raw(Query, [...Bindings]);
       return RegistroseProjetos[0];
     } catch (error) {
       throw new Error(error.message);
