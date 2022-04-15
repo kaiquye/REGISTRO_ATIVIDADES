@@ -17,7 +17,7 @@ class DatabaseModel {
           termino,
           decorrido: Decorrido,
         });
-        await ConnectionDatabase('centrodecusto').transacting(trx).where('id', IdCcusto[0]['centrodecusto_id']).increment('decorrido', Decorrido);
+        await ConnectionDatabase('centrodecusto').transacting(trx).where('id', IdCcusto[0].centrodecusto_id).increment('decorrido', Decorrido);
       });
     } catch (error) {
       throw new Error(error.message);
@@ -76,9 +76,9 @@ class DatabaseModel {
     const SQLDefault = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
       const campos = MontarQuery.ValidarCampos(Data, Setor, Ccusto, email);
-      console.log(campos)
+      console.log(campos);
       if (campos instanceof Error) {
-        console.log('E um error')
+        console.log('E um error');
         return campos;
       }
       const { Query, Bindings } = MontarQuery.Querys(campos);

@@ -13,14 +13,16 @@ export function PainelAdmin() {
 
     useEffect(() => {
         // este useEffect carregar todos os valores da tela do administrador. Caso queira carregar mais dados, não utilizar o mesmo.
-        BuscarProjetos();
-        BuscarRegistroseProjetos();
+        (async () => {
+            await BuscarProjetos();
+            await BuscarRegistroseProjetos();
+        })()
     }, []);
 
     return (
         <>
             <DrawerAdmin />
-            {!Projetos < 0 ? <div className="mensagem-sem-projeto">
+            {!Registros <= 0 ? <div className="mensagem-sem-projeto">
                 <img src={imgError} style={{ width: '10%' }} />
                 <h3>Nenhum registro foi encontrado.</h3>
                 <button>Cadastrar novo registro</button>

@@ -7,8 +7,8 @@ export const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
 
-    const [Projetos, setProjetos] = useState();
-    const [Registros, setRegistros] = useState();
+    const [Projetos, setProjetos] = useState(0);
+    const [Registros, setRegistros] = useState(0);
 
     const BuscarProjetos = async function () {
         const Projetos_ = await BuscarTodosProjetos();
