@@ -5,48 +5,54 @@ import { TabelaRegistros } from "./components/Tabela-Registros";
 import { DrawerAdmin } from "../../componets/drawer-admin";
 import { GraficoCcusto } from "./components/Grafico-Ccusto";
 import { MenuProjeto } from './components/menu/index'
+import { useNavigate } from "react-router-dom";
 import './style.css'
 import imgError from './others.png'
 
 export function PainelAdmin() {
-    const { BuscarProjetos, Projetos, Registros, BuscarRegistroseProjetos } = useContext(AuthContext);
+  const { BuscarProjetos, Projetos, Registros, BuscarRegistroseProjetos } = useContext(AuthContext);
+  const Navigate = useNavigate()
 
-    useEffect(() => {
-        // este useEffect carregar todos os valores da tela do administrador. Caso queira carregar mais dados, não utilizar o mesmo.
-        (async () => {
-            await BuscarProjetos();
-            await BuscarRegistroseProjetos();
-        })()
-    }, []);
+  useEffect(() => {
+    // este useEffect carregar todos os valores da tela do administrador. Caso queira carregar mais dados, não utilizar o mesmo.
+    (async () => {
+      try {
+        await BuscarProjetos();
+        await BuscarRegistroseProjetos();
+      } catch (error) {
+        Navigate(`/error/${error.status}`);
+      }
+    })()
+  }, []);
 
-    return (
-        <>
-            <DrawerAdmin />
-            {!Registros <= 0 ? <div className="mensagem-sem-projeto">
-                <img src={imgError} style={{ width: '10%' }} />
-                <h3>Nenhum registro foi encontrado.</h3>
-                <button>Cadastrar novo registro</button>
+  return (
+    <>
+      <DrawerAdmin />
+      {!Registros <= 0 ? <div className="mensagem-sem-projeto">
+        <img src={imgError} style={{ width: '10%' }} />
+        <h3>Nenhum registro foi encontrado.</h3>
+        <button>Cadastrar novo registro</button>
+      </div>
+        :
+        <main className="page-admin">
+          <div className='menu-registros' >
+            <MenuProjeto />
+          </div>
+          <section className="section-graficos">
+            {/* graficos do painel de administradores. */}
+            <div className="grafico-pizza-projetos">
+              {Projetos && <Graficos data={Projetos} />}
             </div>
-                :
-                <main className="page-admin">
-                    <div className='menu-registros' >
-                        <MenuProjeto />
-                    </div>
-                    <section className="section-graficos">
-                        {/* graficos do painel de administradores. */}
-                        <div className="grafico-pizza-projetos">
-                            {Projetos && <Graficos data={Projetos} />}
-                        </div>
-                    </section>
-                    <section className="section-tabela">
-                        {/* lista de registro de todos os usuarios */}
-                        <div className='TABELA-ADM'>
-                            <p>Registros atrasados</p>
-                            {Registros && <TabelaRegistros data={Registros} />}
-                        </div>
-                    </section>
-                </main>}
+          </section>
+          <section className="section-tabela">
+            {/* lista de registro de todos os usuarios */}
+            <div className='TABELA-ADM'>
+              <p>Registros atrasados</p>
+              {Registros && <TabelaRegistros data={Registros} />}
+            </div>
+          </section>
+        </main>}
 
-        </>
-    )
+    </>
+  )
 }

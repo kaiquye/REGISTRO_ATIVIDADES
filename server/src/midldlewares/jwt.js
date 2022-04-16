@@ -10,7 +10,7 @@ class Auth {
   static ValidadeAD(req, res, next) {
     const Token = req.headers['x-custom-header'];
     if (!Token) {
-      return res.status(400).json({ message: 'Token não informado.' });
+      return res.status(401).json({ message: 'Token não informado.' });
     }
     try {
       const { upn } = jwt.verify(Token, process.env.SECRET);
@@ -18,7 +18,7 @@ class Auth {
       return next();
     } catch (error) {
       console.log(error)
-      return res.status(400).json({ message: 'Usuario não tem permisão.' });
+      return res.status(401).json({ message: 'Usuario não tem permisão.' });
     }
   }
 
@@ -26,21 +26,22 @@ class Auth {
     const Token = req.headers['x-custom-header'];
     console.log(Token)
     if (!Token) {
-      return res.status(400).json({ message: 'Token não informado.' });
+      return res.status(401).json({ message: 'Token não informado.' });
     }
     try {
+      console.log(Token)
       const { upn } = jwt.verify(Token, process.env.SECRET);
       console.log(upn)
       const valido = await ConnectionDb.LoginPorEmail(upn);
       if (valido instanceof Error) {
-        return res.status(400).json({ message: 'Usuario não tem permisão de admin.' });
+        return res.status(401).json({ message: 'Usuario não tem permisão de admin.' });
       }
       req.body.email = upn;
       req.body.role = valido.role;
       return next();
     } catch (error) {
       console.log(error)
-      return res.status(400).json({ message: 'Sua sessão expirou.' });
+      return res.status(401).json({ message: 'Sua sessão expirou.' });
     }
   }
 }

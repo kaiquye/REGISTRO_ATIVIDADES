@@ -1,7 +1,7 @@
 const Model = require('./model-gerente');
 
 class Services {
-  static async Criar(nome, setor, phone, matricula) {
+  async Criar(nome, setor, phone, matricula) {
     try {
       const Instace = await Model.Criar(nome, setor, phone, matricula);
       return Instace;
@@ -11,7 +11,7 @@ class Services {
     }
   }
 
-  static async Buscar(Id) {
+  async Buscar(Id) {
     try {
       const Gerente = await Model.Buscar(Id);
       return Gerente;
@@ -21,7 +21,7 @@ class Services {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     try {
       const Gerentes = await Model.BuscarTodos();
       return Gerentes;
@@ -31,4 +31,4 @@ class Services {
     }
   }
 }
-module.exports = Services;
+module.exports = new Services();

@@ -1,7 +1,7 @@
 const Model = require('./models-ccusto');
 
 class ServicosCcusto {
-  static async Criar(setor, gastos, livres, empresa) {
+  async Criar(setor, gastos, livres, empresa) {
     try {
       const Instace = await Model.Criar(setor.toUpperCase(), gastos, livres, empresa);
       return Instace;
@@ -12,7 +12,7 @@ class ServicosCcusto {
     }
   }
 
-  static async Buscar(Id) {
+  async Buscar(Id) {
     try {
       return await Model.Buscar(Id);
     } catch (error) {
@@ -21,7 +21,7 @@ class ServicosCcusto {
     }
   }
 
-  static async BuscarTodos(condicao) {
+  async BuscarTodos(condicao) {
     try {
       const Ccustos = await Model.BuscarTodos(condicao);
       return Ccustos;
@@ -31,7 +31,7 @@ class ServicosCcusto {
     }
   }
 
-  static async Atualizar(setor, gastos, livres, empresa) {
+  async Atualizar(setor, gastos, livres, empresa) {
     try {
       const Instace = await Model.Atualizar(setor, gastos, livres, empresa);
       return Instace;
@@ -41,7 +41,7 @@ class ServicosCcusto {
     }
   }
 
-  static async BuscarCentroDeCustoEProjetos(Id) {
+  async BuscarCentroDeCustoEProjetos(Id) {
     try {
       return await Model.BuscarCentroDeCustoEProjetos(Id);
     } catch (error) {
@@ -51,4 +51,4 @@ class ServicosCcusto {
   }
 }
 
-module.exports = ServicosCcusto;
+module.exports = new ServicosCcusto();

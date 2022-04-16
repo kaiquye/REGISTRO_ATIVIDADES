@@ -2,7 +2,7 @@ const { ConnectionDatabase } = require('../../database/config');
 const MontarQuery = require('./util');
 
 class DatabaseModel {
-  static async Criar(assunto, funcionario, email, projeto, inicio, termino, Decorrido) {
+  async Criar(assunto, funcionario, email, projeto, inicio, termino, Decorrido) {
     try {
       // tabela sem id = Apenas leitura. Com id : Editar, ler, modifcar, excluir.
       return await ConnectionDatabase.transaction(async (trx) => {
@@ -24,7 +24,7 @@ class DatabaseModel {
     }
   }
 
-  static async Deletar(Id) {
+  async Deletar(Id) {
     const sql = 'delete from alocacoes where id = ?';
     try {
       await ConnectionDatabase.raw(sql, [Id]);
@@ -33,7 +33,7 @@ class DatabaseModel {
     }
   }
 
-  static async Atualizar(TokenRegistro, assunto, funcionario, email, projeto, inicio, termino) {
+  async Atualizar(TokenRegistro, assunto, funcionario, email, projeto, inicio, termino) {
     try {
       await ConnectionDatabase('registros').update(assunto, funcionario, email, projeto, inicio, termino)
         .where({ TokenRegistro });
@@ -42,7 +42,7 @@ class DatabaseModel {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     try {
       const Registros = await ConnectionDatabase('registros').select('*');
       return Registros;
@@ -51,7 +51,7 @@ class DatabaseModel {
     }
   }
 
-  static async Buscar(inicio, email) {
+  async Buscar(inicio, email) {
     // A data esta sendo salva em UTC no banco de dados. O mes esta sendo calculado -1 ;
     const SQL = 'SELECT * FROM registros where MONTH(inicio) = ? and MONTH(termino) = ? and email = ?';
     try {
@@ -62,7 +62,7 @@ class DatabaseModel {
     }
   }
 
-  static async BuscarRegistroeProjetos() {
+  async BuscarRegistroeProjetos() {
     const SQL = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
       const RegistroseProjetos = await ConnectionDatabase.raw(SQL);
@@ -72,7 +72,7 @@ class DatabaseModel {
     }
   }
 
-  static async Filtrar(Data, Setor, Ccusto, email) {
+  async Filtrar(Data, Setor, Ccusto, email) {
     const SQLDefault = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
       const campos = MontarQuery.ValidarCampos(Data, Setor, Ccusto, email);
@@ -94,4 +94,4 @@ class DatabaseModel {
   }
 }
 
-module.exports = DatabaseModel;
+module.exports = new DatabaseModel();

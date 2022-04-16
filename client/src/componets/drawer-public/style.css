@@ -1,0 +1,121 @@
+.draweradmin {
+    transition: all .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    border: none;
+    background-color: rgb(37, 37, 37);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 10px;
+    color: #dadada;
+    display: block;
+    transition: 0.7s;
+}
+
+.sidenav a:hover {
+    background-color: rgba(245, 245, 245, 0.309);
+    color: black;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.sidenav .closebtn {
+    padding: 0px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+
+
+/* NAV BAR  */
+
+
+
+
+.navbar {
+    width: 100%;
+    background-color: blueviolet;
+    overflow: auto
+}
+
+.navbar ::-webkit-input-placeholder {
+    color: rgb(228, 228, 228);
+    font-size: 8px;
+    padding-left: 5px;
+}
+
+.navbar .input-pesquisa-home {
+    margin-top: 2px;
+    width: 60%;
+    background-color: rgba(163, 135, 189, 0.699);
+    padding: 2px;
+    border-radius: 5px;
+    border: none;
+}
+
+.navbar a {
+    float: left;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    color: white;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    transition: all 0.3s;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+.myServices {
+    transition: all .5s;
+    height: 0px;
+    overflow: hidden;
+}
+
+.myServices ul {
+    list-style: none;
+}
+
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float: none;
+        display: block;
+    }
+}

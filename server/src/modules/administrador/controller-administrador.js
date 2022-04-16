@@ -1,7 +1,7 @@
 const Servicos = require('./servicos-administrador');
 
 class AdministradorController {
-  static async Criar(req, res) {
+  async Criar(req, res) {
     try {
       const {
         nome, setor, cargo, email, phone, role,
@@ -14,7 +14,7 @@ class AdministradorController {
     }
   }
 
-  static async Buscar(req, res) {
+  async Buscar(req, res) {
     try {
       const { email, password } = req.body;
       const Instace = await Servicos.Buscar(email, password);
@@ -26,4 +26,4 @@ class AdministradorController {
   }
 }
 
-module.exports = AdministradorController;
+module.exports = new AdministradorController();

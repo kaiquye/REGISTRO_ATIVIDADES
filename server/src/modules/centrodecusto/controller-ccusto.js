@@ -1,11 +1,12 @@
 const Servicos = require('./servicos-ccusto');
-
+const ValidarCampos = require('../../utils/ValidarBody');
 class ControllerCentroDeCusto {
-  static async Criar(req, res) {
+  async Criar(req, res) {
     try {
       const {
         setor, gastos, livres, empresa,
       } = req.body;
+      ValidarCampos.ValidarRequest([setor, gastos, livres, empresa]);
       const Instace = await Servicos.Criar(setor, gastos, livres, empresa);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(201).json({ message: ' Registro criado com sucesso !' });
@@ -14,7 +15,7 @@ class ControllerCentroDeCusto {
     }
   }
 
-  static async Buscar(req, res) {
+  async Buscar(req, res) {
     try {
       const { Id } = req.params;
       const Ccusto = await Servicos.Buscar(Id);
@@ -25,7 +26,7 @@ class ControllerCentroDeCusto {
     }
   }
 
-  static async BuscarTodos(req, res) {
+  async BuscarTodos(req, res) {
     try {
       const Ccusto = await Servicos.BuscarTodos();
       if (Ccusto) return res.status(200).json({ data: Ccusto });
@@ -35,7 +36,7 @@ class ControllerCentroDeCusto {
     }
   }
 
-  static async BuscarCentroDeCustoEProjetos(req, res) {
+  async BuscarCentroDeCustoEProjetos(req, res) {
     try {
       const { Id } = req.params;
       const CcustoEprojeto = await Servicos.BuscarCentroDeCustoEProjetos(Id);
@@ -45,12 +46,13 @@ class ControllerCentroDeCusto {
     }
   }
 
-  static async Update(req, res) {
+  async Update(req, res) {
     try {
       const { Id } = req.params;
       const {
         setor, gastos, livres, empresa,
       } = req.body;
+      ValidarCampos.ValidarRequest([setor, gastos, livres, empresa]);
       const Instace = await Servicos.Atualizar(Id, setor, gastos, livres, empresa);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       return res.status(200).json({ message: 'Centro de custo atualizado' });
@@ -59,4 +61,4 @@ class ControllerCentroDeCusto {
     }
   }
 }
-module.exports = ControllerCentroDeCusto;
+module.exports = new ControllerCentroDeCusto();

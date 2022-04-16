@@ -1,0 +1,26 @@
+.tabelaRegistros {
+    width: 100%;
+    overflow: auto;
+}
+
+.tabelaRegistros div {
+    height: 300px;
+}
+
+.tabela-registros-table {
+    font-size: 10px;
+}
+
+@media screen and (max-width : 1070px) {
+    .tabelaRegistros div {
+        height: 200px;
+    }
+}
+@media screen and (max-width : 550px) {
+    .tabelaRegistros {
+        height: 100%;
+    }
+    .tabela-registros-table {
+        font-size: 7px;
+    }
+}

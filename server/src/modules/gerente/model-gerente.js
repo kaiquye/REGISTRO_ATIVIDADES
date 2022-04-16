@@ -1,7 +1,7 @@
 const { ConnectionDatabase } = require('../../database/config');
 
 class ModelGerente {
-  static async Criar(nome, setor, phone, matricula) {
+  async Criar(nome, setor, phone, matricula) {
     try {
       const Gerente = await ConnectionDatabase('gerente').select('matricula').where('matricula', matricula).first();
       const Phone = await ConnectionDatabase('gerente').select('phone').where('phone', phone).first();
@@ -15,7 +15,7 @@ class ModelGerente {
     }
   }
 
-  static async Buscar(Id) {
+  async Buscar(Id) {
     try {
       const Gerente = await ConnectionDatabase('gerente').select('*').where('id', Id);
       return Gerente[0];
@@ -24,7 +24,7 @@ class ModelGerente {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     const SQL = 'select * from gerente GROUP BY nome';
     try {
       const Gerentes = await ConnectionDatabase.raw(SQL);
@@ -35,4 +35,4 @@ class ModelGerente {
   }
 }
 
-module.exports = ModelGerente;
+module.exports = new ModelGerente();

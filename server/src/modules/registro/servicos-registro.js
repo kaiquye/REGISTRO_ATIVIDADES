@@ -4,7 +4,7 @@ const Dias = require('../../utils/CalcularDiasNãoTrabalhados');
 const CalcularHorasTrabalhadas = require('../../utils/CalcularHorasTrabalhadas');
 
 class ServicosRegistro {
-  static async Criar(assunto, funcionario, email, projeto, inicio, termino) {
+  async Criar(assunto, funcionario, email, projeto, inicio, termino) {
     try {
       const DateStart = Util.DataNovoRegistro(inicio);
       const DateEnd = Util.DataNovoRegistro(termino);
@@ -16,7 +16,7 @@ class ServicosRegistro {
     }
   }
 
-  static async Buscar(Inicio, email) {
+  async Buscar(Inicio, email) {
     try {
       const Registros = await Model.Buscar(Inicio, email);
       const Mes = Dias.CalcularDiasDoMes(Inicio);
@@ -31,7 +31,7 @@ class ServicosRegistro {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     try {
       const Registros = await Model.BuscarTodos();
       return Registros;
@@ -41,7 +41,7 @@ class ServicosRegistro {
     }
   }
 
-  static async Atualizar(TokenRegistro, assunto, funcionario, email, projeto, inicio, termino) {
+  async Atualizar(TokenRegistro, assunto, funcionario, email, projeto, inicio, termino) {
     try {
       await Model.Atualizar(TokenRegistro, assunto, funcionario, email, projeto, inicio, termino);
     } catch (error) {
@@ -50,7 +50,7 @@ class ServicosRegistro {
     }
   }
 
-  static async BuscarRegistroeProjetos() {
+  async BuscarRegistroeProjetos() {
     try {
       return await Model.BuscarRegistroeProjetos();
     } catch (error) {
@@ -59,7 +59,7 @@ class ServicosRegistro {
     }
   }
 
-  static async Filtrar(Data, Setor, Ccusto, email) {
+  async Filtrar(Data, Setor, Ccusto, email) {
     try {
       return await Model.Filtrar(Data, Setor, Ccusto, email);
     } catch (error) {
@@ -69,4 +69,4 @@ class ServicosRegistro {
   }
 }
 
-module.exports = ServicosRegistro;
+module.exports = new ServicosRegistro();

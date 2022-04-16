@@ -1,7 +1,7 @@
 const Model = require('./model-registro');
 
 class ServicosAdministrador {
-  static async Criar(nome, setor, cargo, email, phone, role) {
+  async Criar(nome, setor, cargo, email, phone, role) {
     try {
       if (!role === 'ADMIN') {
         return new Error('usuario não tem permisão.');
@@ -18,7 +18,7 @@ class ServicosAdministrador {
     }
   }
 
-  static async Buscar(email) {
+  async Buscar(email) {
     try {
       const Instace = await Model.Buscar(email);
       return Instace;
@@ -29,4 +29,4 @@ class ServicosAdministrador {
   }
 }
 
-module.exports = ServicosAdministrador;
+module.exports = new ServicosAdministrador();

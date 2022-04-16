@@ -1,11 +1,12 @@
 const Servicos = require('./servicos-gerente');
-
+const ValidarCampos = require('../../utils/ValidarBody');
 class Controller {
-  static async Criar(req, res, next) {
+  async Criar(req, res, next) {
     try {
       const {
         nome, setor, phone, matricula,
       } = req.body;
+      ValidarCampos.ValidarRequest([nome, setor, phone]);
       const Instace = await Servicos.Criar(nome, setor, phone, matricula);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       res.status(201).json({ message: 'Gerente cadastrado com sucesso.' });
@@ -15,7 +16,7 @@ class Controller {
     }
   }
 
-  static async Buscar(req, res, next) {
+  async Buscar(req, res, next) {
     try {
       const { Id } = req.params;
       const Gerente = await Servicos.Buscar(Id);
@@ -26,7 +27,7 @@ class Controller {
     }
   }
 
-  static async BuscarTodos(req, res, next) {
+  async BuscarTodos(req, res, next) {
     try {
       const Gerentes = await Servicos.BuscarTodos();
       if (Gerentes) return res.status(201).json({ data: Gerentes });
@@ -37,4 +38,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = new Controller();

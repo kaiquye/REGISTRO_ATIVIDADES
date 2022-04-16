@@ -3,7 +3,7 @@ const { ConnectionDatabase } = require('../../database/config');
 const { Auth } = require('../../midldlewares/index');
 
 class DatabaseModel {
-  static async Criar(nome, setor, cargo, email, phone, role) {
+  async Criar(nome, setor, cargo, email, phone, role) {
     try {
       const Administrador = await ConnectionDatabase('administrador').select('id').where('email', email).first();
       if (Administrador) return new Error('Já exite um usuario cadastrado com esse e-mail');
@@ -16,7 +16,7 @@ class DatabaseModel {
     }
   }
 
-  static async Buscar(email, password) {
+  async Buscar(email, password) {
     try {
       const Password = await ConnectionDatabase('administrador').select('password').where('email', email).first();
       if (!Password) return new Error('Não foi possivel encontrar usuario. Email invalido.');
@@ -28,7 +28,7 @@ class DatabaseModel {
     }
   }
 
-  static async LoginPorEmail(email) {
+  async LoginPorEmail(email) {
     try {
       const role = await ConnectionDatabase('administrador').select('role').where('email', email).first();
       if (!role) return new Error('Não foi possivel encontrar usuario. Email invalido.');
@@ -38,7 +38,7 @@ class DatabaseModel {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     try {
       return await ConnectionDatabase('administrador').select('*');
     } catch (error) {
@@ -46,4 +46,4 @@ class DatabaseModel {
     }
   }
 }
-module.exports = DatabaseModel;
+module.exports = new DatabaseModel();

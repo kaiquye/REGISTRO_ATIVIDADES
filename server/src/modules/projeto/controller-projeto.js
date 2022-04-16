@@ -1,11 +1,12 @@
 const Servicos = require('./servicos-projeto');
-
+const ValidarCampos = require('../../utils/ValidarBody');
 class ControllerProjeto {
-  static async Criar(req, res) {
+  async Criar(req, res) {
     try {
       const {
         setor, descricao, inicio, gerente, ccusto, decorrido,
       } = req.body;
+      ValidarCampos.ValidarRequest([setor, descricao, gerente, ccusto]);
       console.log('tedted', req.body);
       const Instace = await Servicos
         .Criar(setor, descricao, inicio || new Date(), gerente, ccusto, decorrido);
@@ -16,7 +17,7 @@ class ControllerProjeto {
     }
   }
 
-  static async Buscar(req, res) {
+  async Buscar(req, res) {
     try {
       const { Id } = req.params;
       const Instace = await Servicos.Buscar(Id);
@@ -28,7 +29,7 @@ class ControllerProjeto {
     }
   }
 
-  static async BuscarTodos(req, res) {
+  async BuscarTodos(req, res) {
     try {
       const Instace = await Servicos.BuscarTodos();
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
@@ -39,7 +40,7 @@ class ControllerProjeto {
     }
   }
 
-  static async BuscarProjetoseGerenteseCcusto(req, res) {
+  async BuscarProjetoseGerenteseCcusto(req, res) {
     try {
       const Instace = await Servicos.BuscarProjetoseGerenteseCcusto();
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
@@ -50,10 +51,10 @@ class ControllerProjeto {
     }
   }
 
-  static async Filtrar(req, res) {
+  async Filtrar(req, res) {
     try {
       const { gerente, setor, ccusto } = req.body;
-      console.log(gerente, setor, ccusto)
+      ValidarCampos.ValidarRequest([gerente, setor, ccusto]);
       const Instace = await Servicos.Filtrar(gerente, setor, ccusto);
       if (Instace instanceof Error) return res.status(400).json({ message: Instace.message });
       if (!Instace) return res.status(200).json({ data: 'no data.' });
@@ -63,7 +64,7 @@ class ControllerProjeto {
     }
   }
 
-  static async Apagar(req, res) {
+  async Apagar(req, res) {
     try {
       const { Id } = req.params;
       const Instace = await Servicos.Apagar(Id);
@@ -75,4 +76,4 @@ class ControllerProjeto {
   }
 }
 
-module.exports = ControllerProjeto;
+module.exports = new ControllerProjeto();

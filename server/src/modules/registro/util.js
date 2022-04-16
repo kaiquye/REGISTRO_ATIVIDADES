@@ -42,20 +42,5 @@ class Construir {
       Bindings,
     };
   }
-
-  static ValidarCampos(Data = undefined, Setor = undefined, Ccusto = undefined, Email = undefined) {
-    if (typeof (Data) !== "number") {
-      return new Error('Data não é do tipo inteiro.');
-    }
-    if (typeof (Ccusto) !== "number") {
-      return new Error('Centro de custo não é do tipo inteiro.');
-    }
-    return {
-      Data,
-      Setor,
-      Ccusto,
-      Email,
-    };
-  }
 }
 module.exports = Construir;

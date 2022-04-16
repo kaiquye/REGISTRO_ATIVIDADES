@@ -1,0 +1,29 @@
+.page-error{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: rgb(68, 68, 68);
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+}
+.page-error div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page-error button{
+  background-color: rgba(4, 96, 182, 0.747);
+  color: white;
+  border: none;
+  width: 50%;
+  padding: 3px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-top: 15px;
+}
+.page-error button:hover{
+  background-color: rgb(163, 163, 163);
+}

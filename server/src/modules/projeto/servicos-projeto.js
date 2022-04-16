@@ -2,7 +2,7 @@ const Model = require('./model-projeto');
 const Utils = require('../../utils/Date');
 
 class ServicosProjeto {
-  static async Criar(setor, descricao, inicio, gerente, centrodecusto, decorrido) {
+  async Criar(setor, descricao, inicio, gerente, centrodecusto, decorrido) {
     try {
       // Centro de custo : CALCULAR A DATA TRABALHADA  -  GERAR UM VALOR PARA O CENTRO DE CUSTO.
       const DateFormt = Utils.DataNovoRegistro(inicio);
@@ -15,7 +15,7 @@ class ServicosProjeto {
     }
   }
 
-  static async Buscar(Id) {
+  async Buscar(Id) {
     try {
       const Instace = await Model.Buscar(Id);
       return Instace;
@@ -25,7 +25,7 @@ class ServicosProjeto {
     }
   }
 
-  static async BuscarTodos() {
+  async BuscarTodos() {
     try {
       const Instace = await Model.BuscarTodos();
       return Instace;
@@ -35,7 +35,7 @@ class ServicosProjeto {
     }
   }
 
-  static async BuscarProjetoseGerenteseCcusto() {
+  async BuscarProjetoseGerenteseCcusto() {
     try {
       const Instace = await Model.BuscarProjetoseGerenteseCcusto();
       console.log(Instace);
@@ -46,7 +46,7 @@ class ServicosProjeto {
     }
   }
 
-  static async Filtrar(Gerente, Setor, Ccusto) {
+  async Filtrar(Gerente, Setor, Ccusto) {
     try {
       const Projetos = await Model.FIltrar(Gerente, Setor, Ccusto);
       return Projetos;
@@ -56,7 +56,7 @@ class ServicosProjeto {
     }
   }
 
-  static async Apagar(Id) {
+  async Apagar(Id) {
     try {
       const Instace = await Model.Apagar(Id);
       return Instace;
@@ -66,4 +66,4 @@ class ServicosProjeto {
     }
   }
 }
-module.exports = ServicosProjeto;
+module.exports = new ServicosProjeto();

@@ -1,26 +1,26 @@
-.tabelaProjetos {
+.tabelaCcusto {
     width: 100%;
     overflow: auto;
 }
 
-.tabelaProjetos div {
+.tabelaCcusto div {
     height: 300px;
 }
 
-.tabela-projetos-table {
+.tabela-ccusto-table {
     font-size: 10px;
 }
 
 @media screen and (max-width : 1070px) {
-    .tabelaProjetos div {
+    .tabelaCcusto div {
         height: 200px;
     }
 }
 @media screen and (max-width : 550px) {
-    .tabelaProjetos {
+    .tabelaCcusto {
         height: 100%;
     }
-    .tabela-projetos-table {
+    .tabela-ccusto-table {
         font-size: 7px;
     }
 }
