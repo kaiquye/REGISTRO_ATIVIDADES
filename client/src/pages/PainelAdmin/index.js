@@ -28,7 +28,7 @@ export function PainelAdmin() {
   return (
     <>
       <DrawerAdmin />
-      {!Registros <= 0 ? <div className="mensagem-sem-projeto">
+      {!Registros.length <= 0 ? <div className="mensagem-sem-projeto">
         <img src={imgError} style={{ width: '10%' }} />
         <h3>Nenhum registro foi encontrado.</h3>
         <button>Cadastrar novo registro</button>

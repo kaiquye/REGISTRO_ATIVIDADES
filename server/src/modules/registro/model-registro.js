@@ -62,6 +62,17 @@ class DatabaseModel {
     }
   }
 
+  async BuscarPorEmail(email) {
+    // A data esta sendo salva em UTC no banco de dados. O mes esta sendo calculado -1 ;
+    const SQL = 'SELECT registros.*, projeto.setor, projeto.descricao FROM registros inner join projeto on projeto.id = registros.projeto_id where email = ?';
+    try {
+      const Registros = await ConnectionDatabase.raw(SQL, [inicio - 1, inicio - 1, email]);
+      return Registros[0];
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
   async BuscarRegistroeProjetos() {
     const SQL = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
@@ -76,9 +87,7 @@ class DatabaseModel {
     const SQLDefault = 'SELECT registros.*, projeto.setor  FROM registros inner join projeto on projeto_id = projeto.id';
     try {
       const campos = MontarQuery.ValidarCampos(Data, Setor, Ccusto, email);
-      console.log(campos);
       if (campos instanceof Error) {
-        console.log('E um error');
         return campos;
       }
       const { Query, Bindings } = MontarQuery.Querys(campos);
@@ -88,6 +97,17 @@ class DatabaseModel {
       }
       const RegistroseProjetos = await ConnectionDatabase.raw(Query, [...Bindings]);
       return RegistroseProjetos[0];
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async BuscarQtsPorMes(email) {
+    const Sql = 'SELECT count(registros.id) as registros, count(projeto.id) as projeto, projeto.setor as projeto FROM registros'
+      + ' inner join projeto on registros.projeto_id = projeto.id where MONTH(registros.inicio) = MONTH(now()) and email = ? group by' + ' projeto_id; ';
+    try {
+      const registros = await ConnectionDatabase.raw(Sql, [email]);
+      return registros[0];
     } catch (error) {
       throw new Error(error.message);
     }

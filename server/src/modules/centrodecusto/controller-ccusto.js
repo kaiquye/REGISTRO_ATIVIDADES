@@ -20,7 +20,7 @@ class ControllerCentroDeCusto {
       const { Id } = req.params;
       const Ccusto = await Servicos.Buscar(Id);
       if (Ccusto) return res.status(200).json({ data: Ccusto });
-      return res.status(400).json({ message: 'no data' });
+      return res.status(200).json({ message: 'no data' });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -30,7 +30,7 @@ class ControllerCentroDeCusto {
     try {
       const Ccusto = await Servicos.BuscarTodos();
       if (Ccusto) return res.status(200).json({ data: Ccusto });
-      return res.status(400).json({ message: 'Não existe Ccusto' });
+      return res.status(200).json({ message: 'Não existe Ccusto' });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }

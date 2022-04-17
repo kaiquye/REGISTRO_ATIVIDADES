@@ -1,39 +1,65 @@
-.meusprojetos{
+.meusprojetos {
   width: 100%;
   height: 100vh;
-  background-color: red;
   display: grid;
   grid-template-rows: 30% 70%;
 }
-.novoregistro{
+.novoregistro {
   display: grid;
   grid-template-columns: 55% 10% 10% 10% 10%;
   font-size: 10px;
   gap: 1px;
   margin-bottom: 7px;
   align-items: center;
+  padding-left: 5px;
 }
-.novoregistro input{
+.novoregistro input {
   font-size: 10px;
 }
-.novoregistro select{
+.novoregistro select {
   font-size: 10px;
 }
-.novoregistro button{
-  margin-top:22px;
+.novoregistro button {
+  margin-top: 22px;
 }
-.tabelaregistros{
+.tabelaregistros {
   padding-left: 20px;
   padding-right: 20px;
   background-color: rgb(255, 255, 255);
-  height: 80%;
+  height: 100%;
 }
-.filtroregistro{
+.filtroregistro {
   display: flex;
   margin-bottom: 2px;
   gap: 2px;
+  padding-left: 5px;
 }
-.filtroregistro select{
+.filtroregistro select {
   font-size: 8px;
   width: 100px;
+}
+.grafico-registros-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.grafico-registros {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-size: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.registro-grafico {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px 0px 0px 0px;
 }

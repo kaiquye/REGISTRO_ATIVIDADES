@@ -1,18 +1,11 @@
 import { ApiDefault } from "../../api/ApiBasic";
 import { Error } from "../../Error/Error";
 
-export const NovoRegistro = async function ({ assunto, inicio, termino, projeto }) {
-  console.log(assunto, termino, projeto)
+export const BuscarRegistrosDesteMes = async function () {
   try {
-    await ApiDefault.post('/registro', {
-      assunto,
-      inicio,
-      termino,
-      projeto
-    });
-    return true;
+    const projetos = await ApiDefault.get('/registro/buscar/todos/mes');
+    return projetos.data;
   } catch (error) {
-    console.log(error.response.data.message)
     const ErrorResponse = error.response.status;
     alert(ErrorResponse)
     if (ErrorResponse >= 400 && ErrorResponse <= 403) {

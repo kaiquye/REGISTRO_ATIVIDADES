@@ -21,7 +21,7 @@ class Controller {
       const { Id } = req.params;
       const Gerente = await Servicos.Buscar(Id);
       if (Gerente) return res.status(201).json({ data: Gerente });
-      return res.status(400).json({ message: 'Não foi possivel achar gerente.' });
+      return res.status(200).json({ message: 'No data' });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
@@ -31,7 +31,7 @@ class Controller {
     try {
       const Gerentes = await Servicos.BuscarTodos();
       if (Gerentes) return res.status(201).json({ data: Gerentes });
-      return res.status(400).json({ message: 'Não foi possivel achar gerente.' });
+      return res.status(200).json({ message: 'No data' });
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }

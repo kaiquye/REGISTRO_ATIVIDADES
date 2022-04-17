@@ -67,6 +67,24 @@ class ServicosRegistro {
       throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
     }
   }
+
+  async Filtrar(email) {
+    try {
+      return await Model.BuscarPorEmail(email);
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
+  async BuscarQtsPorMes(email) {
+    try {
+      return await Model.BuscarQtsPorMes(email);
+    } catch (error) {
+      const messageError = error.message;
+      throw new Error(`Aconteceu algo inesperado : 😍 ${messageError}`);
+    }
+  }
+
 }
 
 module.exports = new ServicosRegistro();
