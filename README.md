@@ -15,7 +15,7 @@
   </p>
 </p>
 
-<!-- ABOUT THE PROJEC -->
+<!-- ABOUT THE PROJECJ -->
 
 ## 🤔 Começando
 
