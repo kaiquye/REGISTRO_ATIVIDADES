@@ -6,7 +6,7 @@
   <h1>
   
  Registros de Funcionários 🔰
-
+    
   </h1> 
   <p align="center">
     <img src="https://user-images.githubusercontent.com/69175890/163806329-0d26a3a9-3c93-46aa-a7d4-c0801d676f08.png" width="800" alt="Logo" >
@@ -15,7 +15,7 @@
   </p>
 </p>
 
-<!-- ABOUT THE PROJECT -->
+<!-- ABOUT THE PROJEC -->
 
 ## 🤔 Começando
 
